@@ -20,6 +20,16 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [
+                        // See: android.sourceSets
+                        "room.schemaLocation"  : "$projectDir/schemas".toString(),
+                        "room.incremental"     : "true",
+                        "room.expandProjection": "true"
+                ]
+            }
+        }
         kotlinOptions {
             jvmTarget = '1.8'
         }
@@ -34,6 +44,10 @@ android {
         // gradle.properties:
         // android.databinding.incremental=true
         enabled = true
+    }
+    sourceSets {
+        // See: android.defaultOptions.javaCompileOptions.annotationProcessorOptions
+        androidTest.assets.srcDirs += "$projectDir/schemas"
     }
 }
 
