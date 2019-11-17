@@ -1,7 +1,8 @@
-package net.bouzuya.nekurabe
+package net.bouzuya.nekurabe.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import net.bouzuya.nekurabe.R
 
 class MainActivity : AppCompatActivity() {
 
