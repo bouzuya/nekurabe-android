@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -9,14 +10,16 @@
             type="net.bouzuya.nekurabe.ui.StoreListViewModel" />
     </data>
 
-    <FrameLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.StoreListFragment">
 
-        <TextView
+        <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@{viewModel.message}" />
-    </FrameLayout>
+            app:storeList="@{viewModel.storeList}"
+            tools:itemCount="3"
+            tools:listitem="@layout/store_list_item" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
