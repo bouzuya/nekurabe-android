@@ -3,18 +3,18 @@ package net.bouzuya.nekurabe.ui
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
 import net.bouzuya.nekurabe.data.Store
-import org.threeten.bp.OffsetDateTime
+import net.bouzuya.nekurabe.data.StoreRepository
 
-class StoreListViewModel : ViewModel() {
-    // TODO:
-    private val _storeList = MutableLiveData<List<Store>>(
-        listOf(
-            Store(1, "name1", OffsetDateTime.now(), OffsetDateTime.now()),
-            Store(2, "name2", OffsetDateTime.now(), OffsetDateTime.now()),
-            Store(3, "name3", OffsetDateTime.now(), OffsetDateTime.now())
-        )
-    )
+class StoreListViewModel(private val storeRepository: StoreRepository) : ViewModel() {
+    private val _storeList = MutableLiveData<List<Store>>()
     val storeList: LiveData<List<Store>> = _storeList
 
+    init {
+        viewModelScope.launch {
+            _storeList.value = storeRepository.findAll()
+        }
+    }
 }
