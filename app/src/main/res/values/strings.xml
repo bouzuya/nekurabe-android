@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Nekurabe</string>
+    <string name="home_navigate_to_store_list">Navigate To StoreList</string>
 </resources>

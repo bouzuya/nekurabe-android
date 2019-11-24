@@ -9,5 +9,15 @@
         android:id="@+id/homeFragment"
         android:name="net.bouzuya.nekurabe.ui.HomeFragment"
         android:label="HomeFragment"
-        tools:layout="@layout/home_fragment" />
+        tools:layout="@layout/home_fragment">
+        <action
+            android:id="@+id/action_homeFragment_to_storeListFragment"
+            app:destination="@id/storeListFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/storeListFragment"
+        android:name="net.bouzuya.nekurabe.ui.StoreListFragment"
+        android:label="StoreListFragment"
+        tools:layout="@layout/store_list_fragment" />
 </navigation>
