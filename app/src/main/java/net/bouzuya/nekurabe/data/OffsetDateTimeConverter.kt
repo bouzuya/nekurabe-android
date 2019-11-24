@@ -5,7 +5,7 @@ import org.threeten.bp.Instant
 import org.threeten.bp.OffsetDateTime
 import org.threeten.bp.ZoneId
 
-object OffsetDateTimeConverter {
+class OffsetDateTimeConverter {
     @TypeConverter
     fun fromLong(l: Long): OffsetDateTime =
         OffsetDateTime.ofInstant(Instant.ofEpochMilli(l), ZoneId.systemDefault())
