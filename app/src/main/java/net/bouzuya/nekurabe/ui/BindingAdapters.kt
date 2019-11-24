@@ -12,7 +12,7 @@ import net.bouzuya.nekurabe.databinding.StoreListItemBinding
     "storeList"
 )
 fun RecyclerView.setStoreList(
-    storeList: List<Store>
+    storeList: List<Store>?
 ) {
     class BindingViewHolder(val binding: StoreListItemBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -46,5 +46,6 @@ fun RecyclerView.setStoreList(
         layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         adapter = StoreListAdapter()
     }
-    (adapter as? StoreListAdapter)?.dataSet = storeList
+    val itemList = storeList ?: emptyList()
+    (adapter as? StoreListAdapter)?.dataSet = itemList
 }
