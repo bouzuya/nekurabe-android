@@ -5,14 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import net.bouzuya.nekurabe.data.EventObserver
 import net.bouzuya.nekurabe.databinding.HomeFragmentBinding
 import net.bouzuya.nekurabe.ui.HomeFragmentDirections.Companion.actionHomeFragmentToStoreListFragment
+import org.koin.android.ext.android.inject
 
 class HomeFragment : Fragment() {
-    private val viewModel: HomeViewModel by viewModels()
+    private val viewModel: HomeViewModel by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

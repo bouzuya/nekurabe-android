@@ -5,28 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import net.bouzuya.nekurabe.data.EventObserver
-import net.bouzuya.nekurabe.data.NekurabeDatabase
-import net.bouzuya.nekurabe.data.StoreRepository
 import net.bouzuya.nekurabe.databinding.StoreListFragmentBinding
 import net.bouzuya.nekurabe.ui.StoreListFragmentDirections.Companion.actionStoreListFragmentToStoreEditFragment
+import org.koin.android.ext.android.inject
 
 class StoreListFragment : Fragment() {
-    private val viewModel: StoreListViewModel by viewModels {
-        object : ViewModelProvider.Factory {
-            @Suppress("UNCHECKED_CAST")
-            override fun <T : ViewModel?> create(modelClass: Class<T>): T =
-                StoreListViewModel(
-                    StoreRepository(
-                        NekurabeDatabase.getDatabase(requireContext()).storeDao()
-                    )
-                ) as T
-        }
-    }
+    private val viewModel: StoreListViewModel by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
