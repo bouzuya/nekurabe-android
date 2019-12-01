@@ -14,9 +14,14 @@ class StoreEditViewModel(private val storeRepository: StoreRepository) : ViewMod
     private val _message = MutableLiveData<String>("StoreEdit")
     val message: LiveData<String> = _message
 
+    // two-way binding
+    val nameText = MutableLiveData<String>()
+
     fun create(): Job = viewModelScope.launch {
-        val now = OffsetDateTime.now()
-        val store = Store(0L, "name1", now, now) // FIXME: name
-        storeRepository.insert(store)
+        nameText.value?.let { name ->
+            val now = OffsetDateTime.now()
+            val store = Store(0L, name, now, now)
+            storeRepository.insert(store)
+        }
     }
 }
