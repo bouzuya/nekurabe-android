@@ -19,5 +19,15 @@
         android:id="@+id/storeListFragment"
         android:name="net.bouzuya.nekurabe.ui.StoreListFragment"
         android:label="StoreListFragment"
-        tools:layout="@layout/store_list_fragment" />
+        tools:layout="@layout/store_list_fragment">
+        <action
+            android:id="@+id/action_storeListFragment_to_storeEditFragment"
+            app:destination="@id/storeEditFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/storeEditFragment"
+        android:name="net.bouzuya.nekurabe.ui.StoreEditFragment"
+        android:label="StoreEditFragment"
+        tools:layout="@layout/store_edit_fragment" />
 </navigation>
