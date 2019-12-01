@@ -21,5 +21,15 @@
             app:storeList="@{viewModel.storeList}"
             tools:itemCount="3"
             tools:listitem="@layout/store_list_item" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_margin="16dp"
+            android:contentDescription="@string/store_list_create_store"
+            android:onClick="@{() -> viewModel.create()}"
+            android:src="@drawable/ic_add_white_24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

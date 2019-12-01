@@ -17,4 +17,8 @@ class StoreListViewModel(private val storeRepository: StoreRepository) : ViewMod
             _storeList.value = storeRepository.findAll()
         }
     }
+
+    fun create() {
+        TODO()
+    }
 }
