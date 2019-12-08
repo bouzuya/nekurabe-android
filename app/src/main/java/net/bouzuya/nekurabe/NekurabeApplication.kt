@@ -7,6 +7,7 @@ import com.jakewharton.threetenabp.AndroidThreeTen
 import net.bouzuya.nekurabe.data.NekurabeDatabase
 import net.bouzuya.nekurabe.data.StoreRepository
 import net.bouzuya.nekurabe.ui.HomeViewModel
+import net.bouzuya.nekurabe.ui.StoreDetailViewModel
 import net.bouzuya.nekurabe.ui.StoreEditViewModel
 import net.bouzuya.nekurabe.ui.StoreListViewModel
 import org.koin.android.ext.koin.androidContext
@@ -38,6 +39,7 @@ class NekurabeApplication : Application() {
                 single { get<NekurabeDatabase>().storeDao() }
                 single { StoreRepository(get()) }
                 factory { HomeViewModel() }
+                factory { StoreDetailViewModel() }
                 factory { StoreEditViewModel(get()) }
                 factory { StoreListViewModel(get()) }
             })
