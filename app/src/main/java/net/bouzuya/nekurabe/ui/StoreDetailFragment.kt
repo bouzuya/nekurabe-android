@@ -5,11 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.navArgs
 import net.bouzuya.nekurabe.databinding.StoreDetailFragmentBinding
 import org.koin.android.ext.android.inject
+import org.koin.core.parameter.parametersOf
 
 class StoreDetailFragment : Fragment() {
-    private val viewModel: StoreDetailViewModel by inject()
+    private val args by navArgs<StoreDetailFragmentArgs>()
+    private val viewModel by inject<StoreDetailViewModel> { parametersOf(args.storeId) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -38,5 +38,9 @@
         android:id="@+id/storeDetailFragment"
         android:name="net.bouzuya.nekurabe.ui.StoreDetailFragment"
         android:label="StoreDetailFragment"
-        tools:layout="@layout/store_detail_fragment"/>
+        tools:layout="@layout/store_detail_fragment">
+        <argument
+            android:name="storeId"
+            app:argType="long" />
+    </fragment>
 </navigation>

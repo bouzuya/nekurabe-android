@@ -39,7 +39,7 @@ class NekurabeApplication : Application() {
                 single { get<NekurabeDatabase>().storeDao() }
                 single { StoreRepository(get()) }
                 factory { HomeViewModel() }
-                factory { StoreDetailViewModel() }
+                factory { (storeId: Long) -> StoreDetailViewModel(get(), storeId) }
                 factory { StoreEditViewModel(get()) }
                 factory { StoreListViewModel(get()) }
             })
