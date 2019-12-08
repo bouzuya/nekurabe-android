@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="net.bouzuya.nekurabe.ui.HomeFragment"
-        android:label="HomeFragment"
+        android:label="@string/home_label"
         tools:layout="@layout/home_fragment">
         <action
             android:id="@+id/action_homeFragment_to_storeListFragment"
@@ -18,7 +18,7 @@
     <fragment
         android:id="@+id/storeListFragment"
         android:name="net.bouzuya.nekurabe.ui.StoreListFragment"
-        android:label="StoreListFragment"
+        android:label="@string/store_list_label"
         tools:layout="@layout/store_list_fragment">
         <action
             android:id="@+id/action_storeListFragment_to_storeEditFragment"
@@ -31,13 +31,13 @@
     <fragment
         android:id="@+id/storeEditFragment"
         android:name="net.bouzuya.nekurabe.ui.StoreEditFragment"
-        android:label="StoreEditFragment"
+        android:label="@string/store_edit_label"
         tools:layout="@layout/store_edit_fragment" />
 
     <fragment
         android:id="@+id/storeDetailFragment"
         android:name="net.bouzuya.nekurabe.ui.StoreDetailFragment"
-        android:label="StoreDetailFragment"
+        android:label="@string/store_detail_label"
         tools:layout="@layout/store_detail_fragment">
         <argument
             android:name="storeId"

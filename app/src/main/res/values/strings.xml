@@ -1,11 +1,15 @@
 <resources>
     <string name="app_name">Nekurabe</string>
+    <string name="home_label">Home</string>
     <string name="home_navigate_to_store_list">Navigate To StoreList</string>
-    <string name="store_list_create_store">Create store</string>
-    <string name="store_edit_create">Create</string>
-    <string name="store_edit_name_label">Name</string>
-    <string name="store_detail_id_label">ID:</string>
-    <string name="store_detail_name_label">Name:</string>
     <string name="store_detail_created_at_label">Created At:</string>
+    <string name="store_detail_id_label">ID:</string>
+    <string name="store_detail_label">Store</string>
+    <string name="store_detail_name_label">Name:</string>
     <string name="store_detail_updated_at_label">Updated At:</string>
+    <string name="store_edit_create">Create</string>
+    <string name="store_edit_label">Store Edit</string>
+    <string name="store_edit_name_label">Name</string>
+    <string name="store_list_new_store">New store</string>
+    <string name="store_list_label">Store List</string>
 </resources>
