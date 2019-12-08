@@ -18,6 +18,16 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="@string/store_edit_id_label" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.id}" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:labelFor="@id/store_edit_name"
             android:text="@string/store_edit_name_label" />
 
@@ -29,10 +39,30 @@
             android:text="@={viewModel.nameText}"
             tools:ignore="Autofill" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/store_edit_created_at_label" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.createdAt}" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/store_edit_updated_at_label" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.updatedAt}" />
+
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="@{() -> viewModel.create()}"
-            android:text="@string/store_edit_create" />
+            android:onClick="@{() -> viewModel.save()}"
+            android:text="@string/store_edit_save" />
     </LinearLayout>
 </layout>

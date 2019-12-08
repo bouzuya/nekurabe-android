@@ -32,7 +32,15 @@
         android:id="@+id/storeEditFragment"
         android:name="net.bouzuya.nekurabe.ui.StoreEditFragment"
         android:label="@string/store_edit_label"
-        tools:layout="@layout/store_edit_fragment" />
+        tools:layout="@layout/store_edit_fragment" >
+        <argument
+            android:name="storeId"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_storeEditFragment_to_storeDetailFragment"
+            app:destination="@id/storeDetailFragment"
+            app:popUpTo="@+id/storeListFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/storeDetailFragment"
@@ -42,5 +50,8 @@
         <argument
             android:name="storeId"
             app:argType="long" />
+        <action
+            android:id="@+id/action_storeDetailFragment_to_storeEditFragment"
+            app:destination="@id/storeEditFragment" />
     </fragment>
 </navigation>

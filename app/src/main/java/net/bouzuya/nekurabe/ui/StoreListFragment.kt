@@ -22,8 +22,9 @@ class StoreListFragment : Fragment() {
         binding.viewModel = viewModel
 
         viewModel.createEvent.observe(viewLifecycleOwner, EventObserver {
-            findNavController().navigate(actionStoreListFragmentToStoreEditFragment())
+            findNavController().navigate(actionStoreListFragmentToStoreEditFragment(0L))
         })
+
         viewModel.showEvent.observe(viewLifecycleOwner, EventObserver { store ->
             findNavController().navigate(actionStoreListFragmentToStoreDetailFragment(store.id))
         })

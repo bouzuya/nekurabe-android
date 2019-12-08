@@ -40,7 +40,7 @@ class NekurabeApplication : Application() {
                 single { StoreRepository(get()) }
                 factory { HomeViewModel() }
                 factory { (storeId: Long) -> StoreDetailViewModel(get(), storeId) }
-                factory { StoreEditViewModel(get()) }
+                factory { (storeId: Long) -> StoreEditViewModel(get(), storeId) }
                 factory { StoreListViewModel(get()) }
             })
         }
