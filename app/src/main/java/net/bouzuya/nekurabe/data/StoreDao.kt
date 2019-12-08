@@ -11,4 +11,7 @@ interface StoreDao {
 
     @Insert
     suspend fun insert(store: Store)
+
+    @Query("SELECT * FROM stores WHERE id = :storeId LIMIT 1")
+    suspend fun findById(storeId: Long): Store?
 }
