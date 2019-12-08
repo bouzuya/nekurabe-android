@@ -1,10 +1,32 @@
 package net.bouzuya.nekurabe.ui
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
+import kotlinx.coroutines.launch
+import net.bouzuya.nekurabe.data.Store
+import net.bouzuya.nekurabe.data.StoreRepository
+import org.threeten.bp.format.DateTimeFormatter
 
-class StoreDetailViewModel : ViewModel() {
-    private val _message = MutableLiveData<String>()
-    val message: LiveData<String> = _message
+class StoreDetailViewModel(
+    private val storeRepository: StoreRepository,
+    private val storeId: Long
+) : ViewModel() {
+    private val _store = MutableLiveData<Store>()
+
+    val createdAt: LiveData<String> =
+        Transformations.map(_store) { DateTimeFormatter.ISO_DATE_TIME.format(it.createdAt) }
+
+    val id: LiveData<String> = Transformations.map(_store) { it.id.toString(10) }
+
+    val name: LiveData<String> = Transformations.map(_store) { it.name }
+
+    val updatedAt: LiveData<String> =
+        Transformations.map(_store) { DateTimeFormatter.ISO_DATE_TIME.format(it.updatedAt) }
+
+    init {
+        viewModelScope.launch {
+            storeRepository.findById(storeId)?.let { store ->
+                _store.value = store
+            }
+        }
+    }
 }

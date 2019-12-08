@@ -4,4 +4,8 @@
     <string name="store_list_create_store">Create store</string>
     <string name="store_edit_create">Create</string>
     <string name="store_edit_name_label">Name</string>
+    <string name="store_detail_id_label">ID:</string>
+    <string name="store_detail_name_label">Name:</string>
+    <string name="store_detail_created_at_label">Created At:</string>
+    <string name="store_detail_updated_at_label">Updated At:</string>
 </resources>
