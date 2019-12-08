@@ -8,11 +8,16 @@
         <variable
             name="item"
             type="net.bouzuya.nekurabe.data.Store" />
+
+        <variable
+            name="onClick"
+            type="android.view.View.OnClickListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="48dp">
+        android:layout_height="48dp"
+        android:onClick="@{onClick}">
 
         <TextView
             android:layout_width="match_parent"

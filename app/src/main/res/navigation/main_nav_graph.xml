@@ -23,6 +23,9 @@
         <action
             android:id="@+id/action_storeListFragment_to_storeEditFragment"
             app:destination="@id/storeEditFragment" />
+        <action
+            android:id="@+id/action_storeListFragment_to_storeDetailFragment"
+            app:destination="@id/storeDetailFragment" />
     </fragment>
 
     <fragment
@@ -30,4 +33,10 @@
         android:name="net.bouzuya.nekurabe.ui.StoreEditFragment"
         android:label="StoreEditFragment"
         tools:layout="@layout/store_edit_fragment" />
+
+    <fragment
+        android:id="@+id/storeDetailFragment"
+        android:name="net.bouzuya.nekurabe.ui.StoreDetailFragment"
+        android:label="StoreDetailFragment"
+        tools:layout="@layout/store_detail_fragment"/>
 </navigation>

@@ -13,6 +13,9 @@ class StoreListViewModel(private val storeRepository: StoreRepository) : ViewMod
     private val _createEvent = MutableLiveData<Event<Unit>>()
     val createEvent: LiveData<Event<Unit>> = _createEvent
 
+    private val _showEvent = MutableLiveData<Event<Store>>()
+    val showEvent: LiveData<Event<Store>> = _showEvent
+
     private val _storeList = MutableLiveData<List<Store>>()
     val storeList: LiveData<List<Store>> = _storeList
 
@@ -24,5 +27,9 @@ class StoreListViewModel(private val storeRepository: StoreRepository) : ViewMod
 
     fun create() {
         _createEvent.value = Event(Unit)
+    }
+
+    fun show(store: Store) {
+        _showEvent.value = Event(store)
     }
 }

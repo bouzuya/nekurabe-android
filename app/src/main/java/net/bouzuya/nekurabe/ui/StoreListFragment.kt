@@ -8,8 +8,10 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import net.bouzuya.nekurabe.data.EventObserver
 import net.bouzuya.nekurabe.databinding.StoreListFragmentBinding
+import net.bouzuya.nekurabe.ui.StoreListFragmentDirections.Companion.actionStoreListFragmentToStoreDetailFragment
 import net.bouzuya.nekurabe.ui.StoreListFragmentDirections.Companion.actionStoreListFragmentToStoreEditFragment
 import org.koin.android.ext.android.inject
+import timber.log.Timber
 
 class StoreListFragment : Fragment() {
     private val viewModel: StoreListViewModel by inject()
@@ -22,6 +24,11 @@ class StoreListFragment : Fragment() {
 
         viewModel.createEvent.observe(viewLifecycleOwner, EventObserver {
             findNavController().navigate(actionStoreListFragmentToStoreEditFragment())
+        })
+        viewModel.showEvent.observe(viewLifecycleOwner, EventObserver { store ->
+            // TODO: add param to action
+            Timber.d("%d", store.id)
+            findNavController().navigate(actionStoreListFragmentToStoreDetailFragment())
         })
     }.root
 }

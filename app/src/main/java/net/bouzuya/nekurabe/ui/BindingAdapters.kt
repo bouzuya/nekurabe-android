@@ -1,6 +1,7 @@
 package net.bouzuya.nekurabe.ui
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -8,11 +9,17 @@ import androidx.recyclerview.widget.RecyclerView
 import net.bouzuya.nekurabe.data.Store
 import net.bouzuya.nekurabe.databinding.StoreListItemBinding
 
+interface OnClickStoreListener {
+    fun onClick(store: Store)
+}
+
 @BindingAdapter(
-    "storeList"
+    "storeList",
+    "onClickStore"
 )
 fun RecyclerView.setStoreList(
-    storeList: List<Store>?
+    storeList: List<Store>?,
+    onClickStore: OnClickStoreListener?
 ) {
     class BindingViewHolder(val binding: StoreListItemBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -38,7 +45,9 @@ fun RecyclerView.setStoreList(
         override fun getItemCount(): Int = dataSet.size
 
         override fun onBindViewHolder(holder: BindingViewHolder, position: Int) {
-            holder.binding.item = dataSet[position]
+            val item = dataSet[position]
+            holder.binding.item = item
+            holder.binding.onClick = View.OnClickListener { onClickStore?.onClick(item) }
         }
     }
 
