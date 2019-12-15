@@ -25,6 +25,9 @@ class StoreDetailFragment : Fragment() {
             binding.lifecycleOwner = this
             binding.viewModel = viewModel
 
+            viewModel.deleteCompleteEvent.observe(viewLifecycleOwner, EventObserver {
+                findNavController().navigateUp()
+            })
             viewModel.editEvent.observe(viewLifecycleOwner, EventObserver { storeId ->
                 findNavController().navigate(actionStoreDetailFragmentToStoreEditFragment(storeId))
             })

@@ -11,6 +11,9 @@ class StoreDetailViewModel(
     private val storeRepository: StoreRepository,
     private val storeId: Long
 ) : ViewModel() {
+    private val _deleteCompleteEvent = MutableLiveData<Event<Unit>>()
+    val deleteCompleteEvent: LiveData<Event<Unit>> = _deleteCompleteEvent
+
     private val _editEvent = MutableLiveData<Event<Long>>()
     val editEvent: LiveData<Event<Long>> = _editEvent
 
@@ -30,6 +33,15 @@ class StoreDetailViewModel(
         viewModelScope.launch {
             storeRepository.findById(storeId)?.let { store ->
                 _store.value = store
+            }
+        }
+    }
+
+    fun destroy() {
+        viewModelScope.launch {
+            storeRepository.findById(storeId)?.let { store ->
+                storeRepository.delete(store)
+                _deleteCompleteEvent.value = Event(Unit)
             }
         }
     }

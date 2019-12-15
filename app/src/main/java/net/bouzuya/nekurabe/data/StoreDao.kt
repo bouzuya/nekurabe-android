@@ -1,12 +1,12 @@
 package net.bouzuya.nekurabe.data
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 
 @Dao
 interface StoreDao {
+    @Delete
+    suspend fun delete(store: Store)
+
     @Query("SELECT * FROM stores")
     suspend fun findAll(): List<Store>
 
