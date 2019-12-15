@@ -1,5 +1,6 @@
 package net.bouzuya.nekurabe.data
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 
 @Dao
@@ -8,7 +9,7 @@ interface StoreDao {
     suspend fun delete(store: Store)
 
     @Query("SELECT * FROM stores")
-    suspend fun findAll(): List<Store>
+    fun findAll(): LiveData<List<Store>>
 
     @Query("SELECT * FROM stores WHERE id = :storeId LIMIT 1")
     suspend fun findById(storeId: Long): Store?

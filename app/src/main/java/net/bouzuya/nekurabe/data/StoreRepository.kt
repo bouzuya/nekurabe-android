@@ -1,9 +1,11 @@
 package net.bouzuya.nekurabe.data
 
+import androidx.lifecycle.LiveData
+
 class StoreRepository(private val storeDao: StoreDao) {
     suspend fun delete(store: Store): Unit = storeDao.delete(store)
 
-    suspend fun findAll(): List<Store> = storeDao.findAll()
+    fun findAll(): LiveData<List<Store>> = storeDao.findAll()
 
     suspend fun findById(storeId: Long) = storeDao.findById(storeId)
 
