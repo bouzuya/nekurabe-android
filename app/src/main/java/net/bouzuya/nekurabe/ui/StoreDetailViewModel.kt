@@ -22,8 +22,6 @@ class StoreDetailViewModel(
     val createdAt: LiveData<String> =
         Transformations.map(_store) { DateTimeFormatter.ISO_DATE_TIME.format(it.createdAt) }
 
-    val id: LiveData<String> = Transformations.map(_store) { it.id.toString(10) }
-
     val name: LiveData<String> = Transformations.map(_store) { it.name }
 
     val updatedAt: LiveData<String> =

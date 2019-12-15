@@ -25,12 +25,6 @@ class StoreEditViewModel(
             else DateTimeFormatter.ISO_DATE_TIME.format(it.createdAt)
         }
 
-    val id: LiveData<String> =
-        Transformations.map(_store) {
-            if (storeId == 0L) ""
-            else it.id.toString(10)
-        }
-
     // two-way binding
     val nameText = MutableLiveData<String>()
 
