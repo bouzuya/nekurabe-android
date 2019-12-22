@@ -18,4 +18,6 @@
     <string name="store_edit_edit_label">Edit Store</string>
     <string name="store_edit_destroy_label">Destroy Store</string>
     <string name="item_list_label">Item List</string>
+    <string name="item_edit_label">Item Edit</string>
+    <string name="item_list_new_item">new item</string>
 </resources>

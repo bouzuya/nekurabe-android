@@ -19,10 +19,24 @@
     </fragment>
 
     <fragment
+        android:id="@+id/itemEditFragment"
+        android:name="net.bouzuya.nekurabe.ui.ItemEditFragment"
+        android:label="@string/item_edit_label"
+        tools:layout="@layout/item_edit_fragment">
+        <argument
+            android:name="itemId"
+            app:argType="long" />
+    </fragment>
+
+    <fragment
         android:id="@+id/itemListFragment"
         android:name="net.bouzuya.nekurabe.ui.ItemListFragment"
         android:label="@string/item_list_label"
-        tools:layout="@layout/item_list_fragment" />
+        tools:layout="@layout/item_list_fragment">
+        <action
+            android:id="@+id/action_itemListFragment_to_itemEditFragment"
+            app:destination="@id/itemEditFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/storeListFragment"
