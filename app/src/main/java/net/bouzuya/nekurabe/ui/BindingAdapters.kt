@@ -6,8 +6,52 @@ import android.view.ViewGroup
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import net.bouzuya.nekurabe.data.Item
 import net.bouzuya.nekurabe.data.Store
+import net.bouzuya.nekurabe.databinding.ItemListItemBinding
 import net.bouzuya.nekurabe.databinding.StoreListItemBinding
+
+@BindingAdapter(
+    "itemList"
+)
+fun RecyclerView.setItemList(
+    itemList: List<Item>?
+) {
+    class BindingViewHolder(val binding: ItemListItemBinding) :
+        RecyclerView.ViewHolder(binding.root)
+
+    class ItemListAdapter : RecyclerView.Adapter<BindingViewHolder>() {
+        private var _dataSet: List<Item> = emptyList()
+        var dataSet: List<Item>
+            get() = _dataSet
+            set(values) {
+                _dataSet = values
+                notifyDataSetChanged()
+            }
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BindingViewHolder =
+            BindingViewHolder(
+                ItemListItemBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                )
+            )
+
+        override fun getItemCount(): Int = dataSet.size
+
+        override fun onBindViewHolder(holder: BindingViewHolder, position: Int) {
+            val item = dataSet[position]
+            holder.binding.item = item
+        }
+    }
+
+    if (adapter == null) {
+        layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+        adapter = ItemListAdapter()
+    }
+    (adapter as? ItemListAdapter)?.dataSet = itemList ?: emptyList()
+}
 
 interface OnClickStoreListener {
     fun onClick(store: Store)
