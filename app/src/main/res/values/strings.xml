@@ -17,4 +17,5 @@
     <string name="store_edit_updated_at_label">Updated At:</string>
     <string name="store_edit_edit_label">Edit Store</string>
     <string name="store_edit_destroy_label">Destroy Store</string>
+    <string name="item_list_label">Item List</string>
 </resources>

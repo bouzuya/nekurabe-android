@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import net.bouzuya.nekurabe.data.EventObserver
 import net.bouzuya.nekurabe.databinding.HomeFragmentBinding
+import net.bouzuya.nekurabe.ui.HomeFragmentDirections.Companion.actionHomeFragmentToItemListFragment
 import net.bouzuya.nekurabe.ui.HomeFragmentDirections.Companion.actionHomeFragmentToStoreListFragment
 import org.koin.android.ext.android.inject
 
@@ -21,6 +22,9 @@ class HomeFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
 
+        viewModel.navigateItemListEvent.observe(viewLifecycleOwner, EventObserver {
+            findNavController().navigate(actionHomeFragmentToItemListFragment())
+        })
         viewModel.navigateStoreListEvent.observe(viewLifecycleOwner, EventObserver {
             findNavController().navigate(actionHomeFragmentToStoreListFragment())
         })

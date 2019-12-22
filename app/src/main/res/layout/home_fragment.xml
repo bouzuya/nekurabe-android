@@ -25,6 +25,12 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="@{() -> viewModel.navigateToItemList()}"
+            android:text="@string/item_list_label" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:onClick="@{() -> viewModel.navigateToStoreList()}"
             android:text="@string/home_navigate_to_store_list" />
     </LinearLayout>

@@ -9,8 +9,15 @@ class HomeViewModel : ViewModel() {
     private val _message = MutableLiveData<String>("HomeViewModel")
     val message: LiveData<String> = _message
 
+    private val _navigateToItemListEvent = MutableLiveData<Event<Unit>>()
+    val navigateItemListEvent: LiveData<Event<Unit>> = _navigateToItemListEvent
+
     private val _navigateToStoreListEvent = MutableLiveData<Event<Unit>>()
     val navigateStoreListEvent: LiveData<Event<Unit>> = _navigateToStoreListEvent
+
+    fun navigateToItemList() {
+        _navigateToItemListEvent.value = Event(Unit)
+    }
 
     fun navigateToStoreList() {
         _navigateToStoreListEvent.value = Event(Unit)
