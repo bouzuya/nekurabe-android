@@ -10,7 +10,7 @@ buildscript {
         androidx_lifecycle_version = '2.2.0-rc03'
         androidx_navigation_version = '2.1.0'
         androidx_preference_version = '1.1.0'
-        androidx_room_version = '2.2.2'
+        androidx_room_version = '2.2.3'
         koin_version = '2.0.1'
     }
     repositories {
