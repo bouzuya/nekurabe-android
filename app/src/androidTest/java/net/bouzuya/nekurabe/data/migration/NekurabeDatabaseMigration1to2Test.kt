@@ -1,15 +1,15 @@
-package net.bouzuya.nekurabe.data
+package net.bouzuya.nekurabe.data.migration
 
 import androidx.room.testing.MigrationTestHelper
 import androidx.test.platform.app.InstrumentationRegistry
 import com.jakewharton.threetenabp.AndroidThreeTen
-import net.bouzuya.nekurabe.data.migration.testItemsTable
-import net.bouzuya.nekurabe.data.migration.testStoresTable
+import net.bouzuya.nekurabe.data.NekurabeDatabase
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
-class NekurabeDatabaseTest {
+class NekurabeDatabaseMigration1to2Test {
+
     @get:Rule
     val migrationTestHelper = MigrationTestHelper(
         InstrumentationRegistry.getInstrumentation(),
@@ -23,17 +23,20 @@ class NekurabeDatabaseTest {
     }
 
     @Test
-    fun createDatabaseVersion1() {
-        migrationTestHelper.createDatabase("test-database", 1).also { database ->
+    fun migrate1to2() {
+        val databaseName = "test-database"
+
+        migrationTestHelper.createDatabase(databaseName, 1).also { database ->
             testStoresTable(database)
         }
-    }
 
-    @Test
-    fun createDatabaseVersion2() {
-        migrationTestHelper.createDatabase("test-database", 2).also { database ->
+        migrationTestHelper.runMigrationsAndValidate(
+            databaseName,
+            2,
+            true,
+            NekurabeDatabaseMigration1to2()
+        ).also { database ->
             testItemsTable(database)
-            testStoresTable(database)
         }
     }
 }

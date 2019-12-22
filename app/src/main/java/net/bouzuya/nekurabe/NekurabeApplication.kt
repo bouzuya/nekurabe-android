@@ -6,6 +6,7 @@ import androidx.room.Room
 import com.jakewharton.threetenabp.AndroidThreeTen
 import net.bouzuya.nekurabe.data.NekurabeDatabase
 import net.bouzuya.nekurabe.data.StoreRepository
+import net.bouzuya.nekurabe.data.migration.NekurabeDatabaseMigration1to2
 import net.bouzuya.nekurabe.ui.HomeViewModel
 import net.bouzuya.nekurabe.ui.StoreDetailViewModel
 import net.bouzuya.nekurabe.ui.StoreEditViewModel
@@ -34,7 +35,9 @@ class NekurabeApplication : Application() {
                         applicationContext,
                         NekurabeDatabase::class.java,
                         "nekurabe_database"
-                    ).build()
+                    )
+                        .addMigrations(NekurabeDatabaseMigration1to2())
+                        .build()
                 }
                 single { get<NekurabeDatabase>().storeDao() }
                 single { StoreRepository(get()) }
