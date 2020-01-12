@@ -28,4 +28,5 @@
     <string name="item_edit_updated_at_label">Updated At:</string>
     <string name="item_edit_created_at_label">Created At:</string>
     <string name="item_edit_name_label">Name:</string>
+    <string name="item_edit_edit_label">Edit Item</string>
 </resources>

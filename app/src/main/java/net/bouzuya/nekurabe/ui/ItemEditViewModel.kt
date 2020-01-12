@@ -37,9 +37,9 @@ class ItemEditViewModel(
     init {
         viewModelScope.launch {
             if (itemId != 0L) {
-                // TODO: replace by ItemRepository#findById
-                itemRepository.findAll().value?.find { it.id == itemId }?.let { item ->
+                itemRepository.findById(itemId)?.let { item ->
                     _item.value = item
+                    nameText.value = item.name
                 }
             }
         }
@@ -52,7 +52,12 @@ class ItemEditViewModel(
                 val created = Item(0L, name, now, now)
                 itemRepository.insert(created)
             } else {
-                TODO("Edit Item")
+                // update
+                itemRepository.findById(itemId)?.let { item ->
+                    val updated = item.copy(name = name, updatedAt = now)
+                    itemRepository.update(updated)
+                    item.id
+                }
             }
         }
         savedId?.also { _savedEvent.value = Event(savedId) }

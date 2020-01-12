@@ -2,6 +2,7 @@ package net.bouzuya.nekurabe.ui
 
 import androidx.lifecycle.*
 import kotlinx.coroutines.launch
+import net.bouzuya.nekurabe.data.Event
 import net.bouzuya.nekurabe.data.Item
 import net.bouzuya.nekurabe.data.ItemRepository
 import org.threeten.bp.format.DateTimeFormatter
@@ -10,6 +11,9 @@ class ItemDetailViewModel(
     private val itemRepository: ItemRepository,
     private val itemId: Long
 ) : ViewModel() {
+    private val _editEvent = MutableLiveData<Event<Long>>()
+    val editEvent: LiveData<Event<Long>> = _editEvent
+
     private val _item = MutableLiveData<Item>()
 
     val createdAt: LiveData<String> =
@@ -26,5 +30,9 @@ class ItemDetailViewModel(
                 _item.value = item
             }
         }
+    }
+
+    fun edit() {
+        _editEvent.value = Event(itemId)
     }
 }

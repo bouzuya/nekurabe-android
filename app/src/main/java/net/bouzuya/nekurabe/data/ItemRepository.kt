@@ -8,4 +8,6 @@ class ItemRepository(private val itemDao: ItemDao) {
     suspend fun findById(itemId: Long): Item? = itemDao.findById(itemId)
 
     suspend fun insert(item: Item): Long = itemDao.insert(item)
+
+    suspend fun update(item: Item): Unit = itemDao.update(item)
 }
