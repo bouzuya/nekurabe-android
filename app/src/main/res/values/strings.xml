@@ -17,12 +17,15 @@
     <string name="store_edit_updated_at_label">Updated At:</string>
     <string name="store_edit_edit_label">Edit Store</string>
     <string name="store_edit_destroy_label">Destroy Store</string>
+    <string name="item_detail_created_at_label">Created At:</string>
+    <string name="item_detail_label">Item</string>
+    <string name="item_detail_name_label">Name:</string>
+    <string name="item_detail_updated_at_label">Updated At:</string>
     <string name="item_list_label">Item List</string>
     <string name="item_edit_label">Item Edit</string>
     <string name="item_list_new_item">new item</string>
     <string name="item_edit_save">Save</string>
-    <string name="item_edit_updated_at_label">UpdatedAt</string>
-    <string name="item_edit_created_at_label">Created At</string>
-    <string name="item_edit_name_label">Name</string>
-    <string name="item_detail_label">Item</string>
+    <string name="item_edit_updated_at_label">Updated At:</string>
+    <string name="item_edit_created_at_label">Created At:</string>
+    <string name="item_edit_name_label">Name:</string>
 </resources>

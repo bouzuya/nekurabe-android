@@ -1,10 +1,30 @@
 package net.bouzuya.nekurabe.ui
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
+import kotlinx.coroutines.launch
+import net.bouzuya.nekurabe.data.Item
+import net.bouzuya.nekurabe.data.ItemRepository
+import org.threeten.bp.format.DateTimeFormatter
 
-class ItemDetailViewModel : ViewModel() {
-    private val _message = MutableLiveData<String>("ItemDetail")
-    val message: LiveData<String> = _message
+class ItemDetailViewModel(
+    private val itemRepository: ItemRepository,
+    private val itemId: Long
+) : ViewModel() {
+    private val _item = MutableLiveData<Item>()
+
+    val createdAt: LiveData<String> =
+        Transformations.map(_item) { DateTimeFormatter.ISO_DATE_TIME.format(it.createdAt) }
+
+    val name: LiveData<String> = Transformations.map(_item) { it.name }
+
+    val updatedAt: LiveData<String> =
+        Transformations.map(_item) { DateTimeFormatter.ISO_DATE_TIME.format(it.updatedAt) }
+
+    init {
+        viewModelScope.launch {
+            itemRepository.findById(itemId)?.let { item ->
+                _item.value = item
+            }
+        }
+    }
 }

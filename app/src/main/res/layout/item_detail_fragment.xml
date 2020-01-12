@@ -9,14 +9,40 @@
             type="net.bouzuya.nekurabe.ui.ItemDetailViewModel" />
     </data>
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         tools:context=".ui.ItemDetailFragment">
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@{viewModel.message}" />
-    </FrameLayout>
+            android:layout_height="wrap_content"
+            android:text="@string/item_detail_name_label" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.name}" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/item_detail_created_at_label" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.createdAt}" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/item_detail_updated_at_label" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.updatedAt}" />
+    </LinearLayout>
 </layout>
