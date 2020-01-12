@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import net.bouzuya.nekurabe.data.EventObserver
 import net.bouzuya.nekurabe.databinding.ItemListFragmentBinding
+import net.bouzuya.nekurabe.ui.ItemListFragmentDirections.Companion.actionItemListFragmentToItemDetailFragment
 import net.bouzuya.nekurabe.ui.ItemListFragmentDirections.Companion.actionItemListFragmentToItemEditFragment
 import org.koin.android.ext.android.inject
 
@@ -23,6 +24,13 @@ class ItemListFragment : Fragment() {
 
         viewModel.newEvent.observe(viewLifecycleOwner, EventObserver {
             findNavController().navigate(actionItemListFragmentToItemEditFragment(0L))
+        })
+        viewModel.showEvent.observe(viewLifecycleOwner, EventObserver { item ->
+            findNavController().navigate(
+                actionItemListFragmentToItemDetailFragment(
+                    item.id
+                )
+            )
         })
     }.root
 }

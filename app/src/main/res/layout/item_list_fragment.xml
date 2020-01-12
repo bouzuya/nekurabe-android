@@ -19,6 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:itemList="@{viewModel.itemList}"
+            app:onClickItem="@{viewModel::show}"
             tools:itemCount="3"
             tools:listitem="@layout/item_list_item" />
 

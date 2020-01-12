@@ -11,11 +11,17 @@ import net.bouzuya.nekurabe.data.Store
 import net.bouzuya.nekurabe.databinding.ItemListItemBinding
 import net.bouzuya.nekurabe.databinding.StoreListItemBinding
 
+interface OnClickItemListener {
+    fun onClick(item: Item)
+}
+
 @BindingAdapter(
-    "itemList"
+    "itemList",
+    "onClickItem"
 )
 fun RecyclerView.setItemList(
-    itemList: List<Item>?
+    itemList: List<Item>?,
+    onClickItem: OnClickItemListener?
 ) {
     class BindingViewHolder(val binding: ItemListItemBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -43,6 +49,7 @@ fun RecyclerView.setItemList(
         override fun onBindViewHolder(holder: BindingViewHolder, position: Int) {
             val item = dataSet[position]
             holder.binding.item = item
+            holder.binding.onClick = View.OnClickListener { onClickItem?.onClick(item) }
         }
     }
 
