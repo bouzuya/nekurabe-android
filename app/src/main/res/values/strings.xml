@@ -24,4 +24,5 @@
     <string name="item_edit_updated_at_label">UpdatedAt</string>
     <string name="item_edit_created_at_label">Created At</string>
     <string name="item_edit_name_label">Name</string>
+    <string name="item_detail_label">Item</string>
 </resources>

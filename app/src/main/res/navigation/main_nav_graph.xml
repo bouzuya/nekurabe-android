@@ -19,6 +19,19 @@
     </fragment>
 
     <fragment
+        android:id="@+id/itemDetailFragment"
+        android:name="net.bouzuya.nekurabe.ui.ItemDetailFragment"
+        android:label="@string/item_detail_label"
+        tools:layout="@layout/item_detail_fragment">
+        <argument
+            android:name="itemId"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_itemDetailFragment_to_itemEditFragment"
+            app:destination="@id/itemEditFragment" />
+    </fragment>
+
+    <fragment
         android:id="@+id/itemEditFragment"
         android:name="net.bouzuya.nekurabe.ui.ItemEditFragment"
         android:label="@string/item_edit_label"
@@ -26,6 +39,10 @@
         <argument
             android:name="itemId"
             app:argType="long" />
+        <action
+            android:id="@+id/action_itemEditFragment_to_itemDetailFragment"
+            app:destination="@id/itemDetailFragment"
+            app:popUpTo="@+id/itemListFragment" />
     </fragment>
 
     <fragment
@@ -36,6 +53,9 @@
         <action
             android:id="@+id/action_itemListFragment_to_itemEditFragment"
             app:destination="@id/itemEditFragment" />
+        <action
+            android:id="@+id/action_itemListFragment_to_itemDetailFragment"
+            app:destination="@id/itemDetailFragment" />
     </fragment>
 
     <fragment
