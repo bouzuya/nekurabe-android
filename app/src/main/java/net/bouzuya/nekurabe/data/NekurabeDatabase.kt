@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 
 @TypeConverters(value = [OffsetDateTimeConverter::class])
-@Database(entities = [Item::class, Store::class], version = 2)
+@Database(entities = [Item::class, Price::class, Store::class], version = 3)
 abstract class NekurabeDatabase : RoomDatabase() {
     abstract fun itemDao(): ItemDao
     abstract fun storeDao(): StoreDao
