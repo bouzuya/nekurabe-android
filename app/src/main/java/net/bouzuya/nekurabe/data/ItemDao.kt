@@ -1,13 +1,13 @@
 package net.bouzuya.nekurabe.data
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 
 @Dao
 interface ItemDao {
+    @Delete
+    suspend fun delete(item: Item)
+
     @Query("SELECT * FROM items")
     fun findAll(): LiveData<List<Item>>
 

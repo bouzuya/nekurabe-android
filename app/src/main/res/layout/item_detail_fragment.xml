@@ -50,5 +50,11 @@
             android:layout_height="wrap_content"
             android:onClick="@{() -> viewModel.edit()}"
             android:text="@string/item_edit_edit_label" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> viewModel.destroy()}"
+            android:text="@string/item_edit_destroy_label" />
     </LinearLayout>
 </layout>
