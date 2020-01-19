@@ -8,5 +8,6 @@ import androidx.room.TypeConverters
 @Database(entities = [Item::class, Price::class, Store::class], version = 3)
 abstract class NekurabeDatabase : RoomDatabase() {
     abstract fun itemDao(): ItemDao
+    abstract fun priceDao(): PriceDao
     abstract fun storeDao(): StoreDao
 }
