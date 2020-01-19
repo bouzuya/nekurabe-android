@@ -30,4 +30,6 @@
     <string name="store_edit_updated_at_label">Updated At:</string>
     <string name="store_list_label">Store List</string>
     <string name="store_list_new_store">New store</string>
+    <string name="home_navigate_to_price_list">Price List</string>
+    <string name="price_list_label">Price List</string>
 </resources>

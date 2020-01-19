@@ -31,6 +31,12 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="@{() -> viewModel.navigateToPriceList()}"
+            android:text="@string/home_navigate_to_price_list" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:onClick="@{() -> viewModel.navigateToStoreList()}"
             android:text="@string/home_navigate_to_store_list" />
     </LinearLayout>

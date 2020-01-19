@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_homeFragment_to_storeListFragment"
             app:destination="@id/storeListFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_priceListFragment"
+            app:destination="@id/priceListFragment" />
     </fragment>
 
     <fragment
@@ -57,6 +60,12 @@
             android:id="@+id/action_itemListFragment_to_itemDetailFragment"
             app:destination="@id/itemDetailFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/priceListFragment"
+        android:name="net.bouzuya.nekurabe.ui.PriceListFragment"
+        android:label="@string/price_list_label"
+        tools:layout="@layout/price_list_fragment" />
 
     <fragment
         android:id="@+id/storeListFragment"
