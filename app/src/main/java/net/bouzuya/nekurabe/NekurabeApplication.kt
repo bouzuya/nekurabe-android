@@ -52,8 +52,9 @@ class NekurabeApplication : Application() {
                 // view model
                 factory { HomeViewModel() }
                 factory { (itemId: Long) -> ItemDetailViewModel(get(), itemId) }
-                factory { ItemListViewModel(get()) }
                 factory { (itemId: Long) -> ItemEditViewModel(get(), itemId) }
+                factory { ItemListViewModel(get()) }
+                factory { PriceListViewModel() }
                 factory { (storeId: Long) -> StoreDetailViewModel(get(), storeId) }
                 factory { (storeId: Long) -> StoreEditViewModel(get(), storeId) }
                 factory { StoreListViewModel(get()) }
