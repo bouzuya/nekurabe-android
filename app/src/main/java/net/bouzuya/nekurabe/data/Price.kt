@@ -29,8 +29,10 @@ data class Price(
     @ColumnInfo(name = "id")
     val id: Long,
 
+    @ColumnInfo(index = true)
     val itemId: Long,
 
+    @ColumnInfo(index = true)
     val storeId: Long,
 
     val price: Int,
