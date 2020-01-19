@@ -8,6 +8,7 @@ import net.bouzuya.nekurabe.data.ItemRepository
 import net.bouzuya.nekurabe.data.NekurabeDatabase
 import net.bouzuya.nekurabe.data.StoreRepository
 import net.bouzuya.nekurabe.data.migration.NekurabeDatabaseMigration1to2
+import net.bouzuya.nekurabe.data.migration.NekurabeDatabaseMigration2to3
 import net.bouzuya.nekurabe.ui.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
@@ -36,6 +37,7 @@ class NekurabeApplication : Application() {
                         "nekurabe_database"
                     )
                         .addMigrations(NekurabeDatabaseMigration1to2())
+                        .addMigrations(NekurabeDatabaseMigration2to3())
                         .build()
                 }
 
