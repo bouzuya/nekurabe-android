@@ -33,4 +33,9 @@
     <string name="home_navigate_to_price_list">Price List</string>
     <string name="price_list_label">Price List</string>
     <string name="price_edit_label">Price Edit</string>
+    <string name="price_edit_price_label">Price:</string>
+    <string name="price_edit_created_at_label">Created At:</string>
+    <string name="price_edit_updated_at_label">Updated At:</string>
+    <string name="price_edit_save">Save</string>
+    <string name="price_edit_amount_label">Amount:</string>
 </resources>
