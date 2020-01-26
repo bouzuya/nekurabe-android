@@ -32,4 +32,5 @@
     <string name="store_list_new_store">New store</string>
     <string name="home_navigate_to_price_list">Price List</string>
     <string name="price_list_label">Price List</string>
+    <string name="price_edit_label">Price Edit</string>
 </resources>

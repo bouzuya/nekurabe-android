@@ -33,4 +33,5 @@
     <string name="store_edit_updated_at_label">更新日時:</string>
     <string name="store_list_label">お店一覧</string>
     <string name="store_list_new_store">お店の追加</string>
+    <string name="price_edit_label">価格編集</string>
 </resources>
