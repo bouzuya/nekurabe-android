@@ -1,3 +1,28 @@
+## 0.10.0 (2020-01-26)
+
+### Features
+
+* add ja string resources
+* add price edit screen
+* add save button to price edit screen
+* add navigation for price edit screen to price list screen
+
+### Commits
+
+* fix: add price edit view model factory ([956be49](https://github.com/bouzuya/nekurabe-android/commit/956be49))
+* fix: price list item style ([7decdb8](https://github.com/bouzuya/nekurabe-android/commit/7decdb8))
+* fix: show data in database in price list fragment ([520eb33](https://github.com/bouzuya/nekurabe-android/commit/520eb33))
+* feat: add feature to create new price ([d7ad687](https://github.com/bouzuya/nekurabe-android/commit/d7ad687))
+* feat: add ja string resources ([99fa635](https://github.com/bouzuya/nekurabe-android/commit/99fa635))
+* feat: add navigation price list -> price edit ([36c4f62](https://github.com/bouzuya/nekurabe-android/commit/36c4f62))
+* feat: add price edit fragment ([7011cae](https://github.com/bouzuya/nekurabe-android/commit/7011cae))
+* feat: add price props to price edit fragment ([23c91bb](https://github.com/bouzuya/nekurabe-android/commit/23c91bb))
+* feat: add price repository ([20eff81](https://github.com/bouzuya/nekurabe-android/commit/20eff81))
+* feat: add price.{amount,name} props to price list ([c975396](https://github.com/bouzuya/nekurabe-android/commit/c975396))
+* refactor: add handling arguments for price edit view model ([16b2606](https://github.com/bouzuya/nekurabe-android/commit/16b2606))
+
+
+
 ## 0.9.0 (2020-01-19)
 
 * fix: add index to itemId and storeId columns ([3fb9af1](https://github.com/bouzuya/nekurabe-android/commit/3fb9af1))
