@@ -25,7 +25,7 @@
     <string name="store_edit_edit_label">Edit Store</string>
     <string name="store_edit_id_label">ID:</string>
     <string name="store_edit_label">Store Edit</string>
-    <string name="store_edit_name_label">Name</string>
+    <string name="store_edit_name_label">Name:</string>
     <string name="store_edit_save">Save</string>
     <string name="store_edit_updated_at_label">Updated At:</string>
     <string name="store_list_label">Store List</string>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Nekurabe</string>
+    <string name="home_label">ホーム</string>
+    <string name="home_navigate_to_price_list">価格一覧</string>
+    <string name="home_navigate_to_store_list">お店一覧</string>
+    <string name="item_detail_created_at_label">作成日</string>
+    <string name="item_detail_label">商品</string>
+    <string name="item_detail_name_label">名前:</string>
+    <string name="item_detail_updated_at_label">更新日時:</string>
+    <string name="item_edit_created_at_label">作成日時:</string>
+    <string name="item_edit_destroy_label">商品の削除</string>
+    <string name="item_edit_edit_label">商品の編集</string>
+    <string name="item_edit_label">商品編集</string>
+    <string name="item_edit_name_label">名前:</string>
+    <string name="item_edit_save">商品の保存</string>
+    <string name="item_edit_updated_at_label">更新日時:</string>
+    <string name="item_list_label">商品一覧</string>
+    <string name="item_list_new_item">商品の追加</string>
+    <string name="price_list_label">価格一覧</string>
+    <string name="store_detail_created_at_label">作成日時:</string>
+    <string name="store_detail_id_label">ID:</string>
+    <string name="store_detail_label">お店</string>
+    <string name="store_detail_name_label">名前:</string>
+    <string name="store_detail_updated_at_label">更新日時:</string>
+    <string name="store_edit_created_at_label">作成日時:</string>
+    <string name="store_edit_destroy_label">お店の削除</string>
+    <string name="store_edit_edit_label">お店の編集</string>
+    <string name="store_edit_label">お店編集</string>
+    <string name="store_edit_id_label">ID:</string>
+    <string name="store_edit_name_label">名前:</string>
+    <string name="store_edit_save">お店の保存</string>
+    <string name="store_edit_updated_at_label">更新日時:</string>
+    <string name="store_list_label">お店一覧</string>
+    <string name="store_list_new_store">お店の追加</string>
+</resources>
