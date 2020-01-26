@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -9,14 +10,27 @@
             type="net.bouzuya.nekurabe.ui.PriceListViewModel" />
     </data>
 
-    <FrameLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.PriceListFragment">
 
-        <TextView
+        <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@{viewModel.message}" />
-    </FrameLayout>
+            app:onClickPrice="@{viewModel::show}"
+            app:priceList="@{viewModel.priceList}"
+            tools:itemCount="3"
+            tools:listitem="@layout/price_list_item" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_margin="16dp"
+            android:contentDescription="@string/item_list_new_item"
+            android:onClick="@{() -> viewModel.newPrice()}"
+            android:src="@drawable/ic_add_white_24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

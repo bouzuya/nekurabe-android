@@ -7,8 +7,10 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import net.bouzuya.nekurabe.data.Item
+import net.bouzuya.nekurabe.data.Price
 import net.bouzuya.nekurabe.data.Store
 import net.bouzuya.nekurabe.databinding.ItemListItemBinding
+import net.bouzuya.nekurabe.databinding.PriceListItemBinding
 import net.bouzuya.nekurabe.databinding.StoreListItemBinding
 
 interface OnClickItemListener {
@@ -58,6 +60,56 @@ fun RecyclerView.setItemList(
         adapter = ItemListAdapter()
     }
     (adapter as? ItemListAdapter)?.dataSet = itemList ?: emptyList()
+}
+
+interface OnClickPriceListener {
+    fun onClick(item: Price)
+}
+
+@BindingAdapter(
+    "priceList",
+    "onClickPrice"
+)
+fun RecyclerView.setPriceList(
+    priceList: List<Price>?,
+    onClickPrice: OnClickPriceListener?
+) {
+    class BindingViewHolder(val binding: PriceListItemBinding) :
+        RecyclerView.ViewHolder(binding.root)
+
+    class StoreListAdapter : RecyclerView.Adapter<BindingViewHolder>() {
+        private var _dataSet: List<Price> = emptyList()
+        var dataSet: List<Price>
+            get() = _dataSet
+            set(values) {
+                _dataSet = values
+                notifyDataSetChanged()
+            }
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BindingViewHolder =
+            BindingViewHolder(
+                PriceListItemBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                )
+            )
+
+        override fun getItemCount(): Int = dataSet.size
+
+        override fun onBindViewHolder(holder: BindingViewHolder, position: Int) {
+            val item = dataSet[position]
+            holder.binding.item = item
+            holder.binding.onClick = View.OnClickListener { onClickPrice?.onClick(item) }
+        }
+    }
+
+    if (adapter == null) {
+        layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+        adapter = StoreListAdapter()
+    }
+    val itemList = priceList ?: emptyList()
+    (adapter as? StoreListAdapter)?.dataSet = itemList
 }
 
 interface OnClickStoreListener {
