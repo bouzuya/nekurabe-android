@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import net.bouzuya.nekurabe.data.EventObserver
 import net.bouzuya.nekurabe.databinding.PriceListFragmentBinding
+import net.bouzuya.nekurabe.ui.PriceListFragmentDirections.Companion.actionPriceListFragmentToPriceDetailFragment
 import net.bouzuya.nekurabe.ui.PriceListFragmentDirections.Companion.actionPriceListFragmentToPriceEditFragment
 import org.koin.android.ext.android.inject
 
@@ -23,6 +24,10 @@ class PriceListFragment : Fragment() {
 
         viewModel.newEvent.observe(viewLifecycleOwner, EventObserver {
             findNavController().navigate(actionPriceListFragmentToPriceEditFragment(0L))
+        })
+        viewModel.showEvent.observe(viewLifecycleOwner, EventObserver {
+            // TODO: price.price.id
+            findNavController().navigate(actionPriceListFragmentToPriceDetailFragment())
         })
     }.root
 }

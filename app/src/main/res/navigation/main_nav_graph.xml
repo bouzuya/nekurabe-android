@@ -62,6 +62,16 @@
     </fragment>
 
     <fragment
+        android:id="@+id/priceDetailFragment"
+        android:name="net.bouzuya.nekurabe.ui.PriceDetailFragment"
+        android:label="@string/price_detail_label"
+        tools:layout="@layout/price_detail_fragment">
+        <action
+            android:id="@+id/action_priceDetailFragment_to_priceEditFragment"
+            app:destination="@id/priceEditFragment" />
+    </fragment>
+
+    <fragment
         android:id="@+id/priceEditFragment"
         android:name="net.bouzuya.nekurabe.ui.PriceEditFragment"
         android:label="@string/price_edit_label"
@@ -69,6 +79,9 @@
         <argument
             android:name="priceId"
             app:argType="long" />
+        <action
+            android:id="@+id/action_priceEditFragment_to_priceDetailFragment"
+            app:destination="@id/priceDetailFragment" />
     </fragment>
 
     <fragment
@@ -79,6 +92,9 @@
         <action
             android:id="@+id/action_priceListFragment_to_priceEditFragment"
             app:destination="@id/priceEditFragment" />
+        <action
+            android:id="@+id/action_priceListFragment_to_priceDetailFragment"
+            app:destination="@id/priceDetailFragment" />
     </fragment>
 
     <fragment

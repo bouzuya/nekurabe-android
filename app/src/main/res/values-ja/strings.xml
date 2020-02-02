@@ -41,4 +41,5 @@
     <string name="price_edit_amount_label">量:</string>
     <string name="price_edit_item_label">商品:</string>
     <string name="price_edit_store_label">お店:</string>
+    <string name="price_detail_label">価格</string>
 </resources>
