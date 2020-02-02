@@ -7,7 +7,7 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import net.bouzuya.nekurabe.data.Item
-import net.bouzuya.nekurabe.data.Price
+import net.bouzuya.nekurabe.data.PriceAndItemAndStore
 import net.bouzuya.nekurabe.data.Store
 import net.bouzuya.nekurabe.databinding.ItemListItemBinding
 import net.bouzuya.nekurabe.databinding.PriceListItemBinding
@@ -63,7 +63,7 @@ fun RecyclerView.setItemList(
 }
 
 interface OnClickPriceListener {
-    fun onClick(item: Price)
+    fun onClick(item: PriceAndItemAndStore)
 }
 
 @BindingAdapter(
@@ -71,15 +71,15 @@ interface OnClickPriceListener {
     "onClickPrice"
 )
 fun RecyclerView.setPriceList(
-    priceList: List<Price>?,
+    priceList: List<PriceAndItemAndStore>?,
     onClickPrice: OnClickPriceListener?
 ) {
     class BindingViewHolder(val binding: PriceListItemBinding) :
         RecyclerView.ViewHolder(binding.root)
 
     class StoreListAdapter : RecyclerView.Adapter<BindingViewHolder>() {
-        private var _dataSet: List<Price> = emptyList()
-        var dataSet: List<Price>
+        private var _dataSet: List<PriceAndItemAndStore> = emptyList()
+        var dataSet: List<PriceAndItemAndStore>
             get() = _dataSet
             set(values) {
                 _dataSet = values

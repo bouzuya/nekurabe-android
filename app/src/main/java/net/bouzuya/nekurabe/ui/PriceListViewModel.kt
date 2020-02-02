@@ -4,14 +4,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import net.bouzuya.nekurabe.data.Event
-import net.bouzuya.nekurabe.data.Price
-import net.bouzuya.nekurabe.data.PriceRepository
+import net.bouzuya.nekurabe.data.PriceAndItemAndStore
+import net.bouzuya.nekurabe.data.PriceAndItemAndStoreRepository
 import timber.log.Timber
 
 class PriceListViewModel(
-    priceRepository: PriceRepository
+    priceAndItemAndStoreRepository: PriceAndItemAndStoreRepository
 ) : ViewModel() {
-    val priceList: LiveData<List<Price>> = priceRepository.findAll()
+    val priceList: LiveData<List<PriceAndItemAndStore>> = priceAndItemAndStoreRepository.findAll()
 
     private val _newEvent = MutableLiveData<Event<Unit>>()
     val newEvent: LiveData<Event<Unit>> = _newEvent
@@ -20,7 +20,7 @@ class PriceListViewModel(
         _newEvent.value = Event(Unit)
     }
 
-    fun show(price: Price) {
+    fun show(price: PriceAndItemAndStore) {
         Timber.d("%s", price)
         TODO()
     }

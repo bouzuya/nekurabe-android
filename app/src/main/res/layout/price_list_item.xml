@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="net.bouzuya.nekurabe.data.Price" />
+            type="net.bouzuya.nekurabe.data.PriceAndItemAndStore" />
 
         <variable
             name="onClick"
@@ -19,7 +19,25 @@
         android:layout_height="48dp"
         android:onClick="@{onClick}">
 
-        <!-- TODO: price.item.name -->
+        <TextView
+            android:id="@+id/price_list_item_item_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{item.item.name}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="item1" />
+
+        <TextView
+            android:id="@+id/price_list_item_store_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{item.store.name}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/price_list_item_item_name"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="item1" />
 
         <TextView
             android:id="@+id/price_list_item_price"
@@ -28,8 +46,9 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:gravity="center_vertical|start"
-            android:text="@{Integer.toString(item.price)}"
+            android:text="@{Integer.toString(item.price.price)}"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/price_list_item_store_name"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Price" />
 
@@ -39,7 +58,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:gravity="center_vertical|start"
-            android:text="@{Integer.toString(item.amount)}"
+            android:text="@{Integer.toString(item.price.amount)}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/price_list_item_price"
             app:layout_constraintTop_toTopOf="parent"
