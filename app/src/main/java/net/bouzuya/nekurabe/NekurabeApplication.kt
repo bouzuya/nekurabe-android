@@ -4,10 +4,7 @@ import android.app.Application
 import android.os.StrictMode
 import androidx.room.Room
 import com.jakewharton.threetenabp.AndroidThreeTen
-import net.bouzuya.nekurabe.data.ItemRepository
-import net.bouzuya.nekurabe.data.NekurabeDatabase
-import net.bouzuya.nekurabe.data.PriceRepository
-import net.bouzuya.nekurabe.data.StoreRepository
+import net.bouzuya.nekurabe.data.*
 import net.bouzuya.nekurabe.data.migration.NekurabeDatabaseMigration1to2
 import net.bouzuya.nekurabe.data.migration.NekurabeDatabaseMigration2to3
 import net.bouzuya.nekurabe.ui.*
@@ -44,11 +41,13 @@ class NekurabeApplication : Application() {
 
                 // dao
                 single { get<NekurabeDatabase>().itemDao() }
+                single { get<NekurabeDatabase>().priceAndItemAndStoreDao() }
                 single { get<NekurabeDatabase>().priceDao() }
                 single { get<NekurabeDatabase>().storeDao() }
 
                 // repository
                 single { ItemRepository(get()) }
+                single { PriceAndItemAndStoreRepository(get(), get()) }
                 single { PriceRepository(get()) }
                 single { StoreRepository(get()) }
 

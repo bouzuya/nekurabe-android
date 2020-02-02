@@ -9,5 +9,6 @@ import androidx.room.TypeConverters
 abstract class NekurabeDatabase : RoomDatabase() {
     abstract fun itemDao(): ItemDao
     abstract fun priceDao(): PriceDao
+    abstract fun priceAndItemAndStoreDao(): PriceAndItemAndStoreDao
     abstract fun storeDao(): StoreDao
 }
