@@ -41,4 +41,10 @@
     <string name="price_edit_store_label">Store:</string>
     <string name="price_edit_item_label">Item:</string>
     <string name="price_detail_label">Price</string>
+    <string name="price_detail_item_label">Item:</string>
+    <string name="price_detail_store_label">Store:</string>
+    <string name="price_detail_price_label">Price:</string>
+    <string name="price_detail_amount_label">Amount:</string>
+    <string name="price_detail_created_at_label">Creted At:</string>
+    <string name="price_detail_updated_at_label">Updated At:</string>
 </resources>

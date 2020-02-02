@@ -9,14 +9,78 @@
             type="net.bouzuya.nekurabe.ui.PriceDetailViewModel" />
     </data>
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         tools:context=".ui.PriceDetailFragment">
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@{viewModel.message}" />
-    </FrameLayout>
+            android:layout_height="wrap_content"
+            android:labelFor="@id/price_detail_item"
+            android:text="@string/price_detail_item_label" />
+
+        <TextView
+            android:id="@+id/price_detail_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.itemName}" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:labelFor="@id/price_detail_store"
+            android:text="@string/price_detail_store_label" />
+
+        <TextView
+            android:id="@+id/price_detail_store"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.storeName}" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:labelFor="@id/price_detail_price"
+            android:text="@string/price_detail_price_label" />
+
+        <TextView
+            android:id="@+id/price_detail_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.priceText}" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:labelFor="@id/price_detail_amount"
+            android:text="@string/price_detail_amount_label" />
+
+        <TextView
+            android:id="@+id/price_detail_amount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.amountText}" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/price_detail_created_at_label" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.createdAt}" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/price_detail_updated_at_label" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.updatedAt}" />
+    </LinearLayout>
 </layout>

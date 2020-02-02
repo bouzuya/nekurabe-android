@@ -25,9 +25,8 @@ class PriceListFragment : Fragment() {
         viewModel.newEvent.observe(viewLifecycleOwner, EventObserver {
             findNavController().navigate(actionPriceListFragmentToPriceEditFragment(0L))
         })
-        viewModel.showEvent.observe(viewLifecycleOwner, EventObserver {
-            // TODO: price.price.id
-            findNavController().navigate(actionPriceListFragmentToPriceDetailFragment())
+        viewModel.showEvent.observe(viewLifecycleOwner, EventObserver { price ->
+            findNavController().navigate(actionPriceListFragmentToPriceDetailFragment(price.price.id))
         })
     }.root
 }

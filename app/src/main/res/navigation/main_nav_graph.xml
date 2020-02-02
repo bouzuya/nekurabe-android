@@ -66,6 +66,9 @@
         android:name="net.bouzuya.nekurabe.ui.PriceDetailFragment"
         android:label="@string/price_detail_label"
         tools:layout="@layout/price_detail_fragment">
+        <argument
+            android:name="priceId"
+            app:argType="long" />
         <action
             android:id="@+id/action_priceDetailFragment_to_priceEditFragment"
             app:destination="@id/priceEditFragment" />
