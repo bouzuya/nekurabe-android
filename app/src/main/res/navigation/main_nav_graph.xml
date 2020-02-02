@@ -84,7 +84,8 @@
             app:argType="long" />
         <action
             android:id="@+id/action_priceEditFragment_to_priceDetailFragment"
-            app:destination="@id/priceDetailFragment" />
+            app:destination="@id/priceDetailFragment"
+            app:popUpTo="@id/priceListFragment" />
     </fragment>
 
     <fragment
