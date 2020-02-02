@@ -24,8 +24,14 @@ class PriceEditViewModel(
             else DateTimeFormatter.ISO_DATE_TIME.format(it.createdAt)
         }
 
+    val itemNameList: LiveData<List<String>> =
+        Transformations.map(itemRepository.findAll()) { list -> list.map { it.name } }
+
     // two-way binding
     val priceText = MutableLiveData<String>()
+
+    val storeNameList: LiveData<List<String>> =
+        Transformations.map(storeRepository.findAll()) { list -> list.map { it.name } }
 
     // two-way binding
     val amountText = MutableLiveData<String>()

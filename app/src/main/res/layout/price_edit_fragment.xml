@@ -15,6 +15,16 @@
         android:orientation="vertical"
         tools:context=".ui.PriceEditFragment">
 
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@{viewModel.itemNameList}" />
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@{viewModel.storeNameList}" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
