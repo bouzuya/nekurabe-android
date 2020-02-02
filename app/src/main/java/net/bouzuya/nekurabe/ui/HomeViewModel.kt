@@ -6,9 +6,6 @@ import androidx.lifecycle.ViewModel
 import net.bouzuya.nekurabe.data.Event
 
 class HomeViewModel : ViewModel() {
-    private val _message = MutableLiveData<String>("HomeViewModel")
-    val message: LiveData<String> = _message
-
     private val _navigateToItemListEvent = MutableLiveData<Event<Unit>>()
     val navigateItemListEvent: LiveData<Event<Unit>> = _navigateToItemListEvent
 
