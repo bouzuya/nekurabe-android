@@ -42,4 +42,11 @@
     <string name="price_edit_item_label">商品:</string>
     <string name="price_edit_store_label">お店:</string>
     <string name="price_detail_label">価格</string>
+    <string name="price_detail_amount_label">量:</string>
+    <string name="price_detail_created_at_label">作成日時:</string>
+    <string name="price_detail_edit_label">価格の編集</string>
+    <string name="price_detail_item_label">商品:</string>
+    <string name="price_detail_price_label">価格:</string>
+    <string name="price_detail_store_label">お店:</string>
+    <string name="price_detail_updated_at_label">更新日時:</string>
 </resources>

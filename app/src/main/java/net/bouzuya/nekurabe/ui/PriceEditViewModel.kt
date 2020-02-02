@@ -26,6 +26,8 @@ class PriceEditViewModel(
 
     private val itemList: LiveData<List<Item>> = itemRepository.findAll()
 
+    private val storeList: LiveData<List<Store>> = storeRepository.findAll()
+
     val itemNameList: LiveData<List<String>> =
         Transformations.map(itemList) { list -> list.map { it.name } }
 
@@ -33,12 +35,40 @@ class PriceEditViewModel(
     val priceText = MutableLiveData<String>()
 
     // two-way binding
-    val selectedItemPosition = MutableLiveData<Int>()
+    val selectedItemPosition: MutableLiveData<Int> = MediatorLiveData<Int>().also { data ->
+        data.addSource(itemList) { listOrNull ->
+            listOrNull?.let { list ->
+                _price.value?.itemId?.let { itemId ->
+                    list.indexOfFirst { it.id == itemId }
+                }
+            }?.let { data.value = it }
+        }
+        data.addSource(_price) { priceOrNull ->
+            itemList.value?.let { list ->
+                priceOrNull?.itemId?.let { itemId ->
+                    list.indexOfFirst { it.id == itemId }
+                }
+            }?.let { data.value = it }
+        }
+    }
 
     // two-way binding
-    val selectedStorePosition = MutableLiveData<Int>()
-
-    private val storeList: LiveData<List<Store>> = storeRepository.findAll()
+    val selectedStorePosition: MutableLiveData<Int> = MediatorLiveData<Int>().also { data ->
+        data.addSource(storeList) { listOrNull ->
+            listOrNull?.let { list ->
+                _price.value?.storeId?.let { storeId ->
+                    list.indexOfFirst { it.id == storeId }
+                }
+            }?.let { data.value = it }
+        }
+        data.addSource(_price) { priceOrNull ->
+            storeList.value?.let { list ->
+                priceOrNull?.storeId?.let { storeId ->
+                    list.indexOfFirst { it.id == storeId }
+                }
+            }?.let { data.value = it }
+        }
+    }
 
     val storeNameList: LiveData<List<String>> =
         Transformations.map(storeList) { list -> list.map { it.name } }
@@ -55,10 +85,10 @@ class PriceEditViewModel(
     init {
         viewModelScope.launch {
             if (priceId != 0L) {
-                priceRepository.findById(priceId)?.let { item ->
-                    _price.value = item
-                    priceText.value = item.price.toString()
-                    amountText.value = item.amount.toString()
+                priceRepository.findById(priceId)?.let { price ->
+                    _price.value = price
+                    priceText.value = price.price.toString()
+                    amountText.value = price.amount.toString()
                 }
             }
         }
@@ -69,36 +99,37 @@ class PriceEditViewModel(
         val savedId =
             priceText.value?.toIntOrNull()?.let { priceValue ->
                 amountText.value?.toIntOrNull()?.let { amount ->
-                    selectedItemPosition.value?.let { itemList.value?.getOrNull(it) }?.let { item ->
-                        selectedStorePosition.value?.let { storeList.value?.getOrNull(it) }
-                            ?.let { store ->
-                                if (priceId == 0L) {
-                                    val created = Price(
-                                        id = 0L,
-                                        itemId = item.id,
-                                        storeId = store.id,
-                                        price = priceValue,
-                                        amount = amount,
-                                        createdAt = now,
-                                        updatedAt = now
-                                    )
-                                    priceRepository.insert(created)
-                                } else {
-                                    // update
-                                    priceRepository.findById(priceId)?.let { price ->
-                                        val updated = price.copy(
-                                            itemId = price.id,
+                    selectedItemPosition.value?.let { itemList.value?.getOrNull(it) }
+                        ?.let { item ->
+                            selectedStorePosition.value?.let { storeList.value?.getOrNull(it) }
+                                ?.let { store ->
+                                    if (priceId == 0L) {
+                                        val created = Price(
+                                            id = 0L,
+                                            itemId = item.id,
                                             storeId = store.id,
                                             price = priceValue,
                                             amount = amount,
+                                            createdAt = now,
                                             updatedAt = now
                                         )
-                                        priceRepository.update(updated)
-                                        price.id
+                                        priceRepository.insert(created)
+                                    } else {
+                                        // update
+                                        priceRepository.findById(priceId)?.let { price ->
+                                            val updated = price.copy(
+                                                itemId = item.id,
+                                                storeId = store.id,
+                                                price = priceValue,
+                                                amount = amount,
+                                                updatedAt = now
+                                            )
+                                            priceRepository.update(updated)
+                                            price.id
+                                        }
                                     }
                                 }
-                            }
-                    }
+                        }
                 }
             }
         savedId?.also { _savedEvent.value = Event(savedId) }

@@ -82,5 +82,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@{viewModel.updatedAt}" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> viewModel.edit()}"
+            android:text="@string/price_detail_edit_label" />
     </LinearLayout>
 </layout>
