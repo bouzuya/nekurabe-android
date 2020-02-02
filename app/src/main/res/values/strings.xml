@@ -38,4 +38,6 @@
     <string name="price_edit_updated_at_label">Updated At:</string>
     <string name="price_edit_save">Save</string>
     <string name="price_edit_amount_label">Amount:</string>
+    <string name="price_edit_store_label">Store:</string>
+    <string name="price_edit_item_label">Item:</string>
 </resources>

@@ -15,15 +15,32 @@
         android:orientation="vertical"
         tools:context=".ui.PriceEditFragment">
 
-        <Spinner
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:entries="@{viewModel.itemNameList}" />
+            android:labelFor="@id/price_edit_item"
+            android:text="@string/price_edit_item_label" />
 
         <Spinner
+            android:id="@+id/price_edit_item"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:entries="@{viewModel.storeNameList}" />
+            android:entries="@{viewModel.itemNameList}"
+            android:selectedItemPosition="@={viewModel.selectedItemPosition}" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:labelFor="@id/price_edit_store"
+            android:text="@string/price_edit_store_label" />
+
+        <Spinner
+            android:id="@+id/price_edit_store"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@{viewModel.storeNameList}"
+            android:selectedItemPosition="@={viewModel.selectedStorePosition}" />
 
         <TextView
             android:layout_width="match_parent"

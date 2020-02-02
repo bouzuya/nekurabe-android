@@ -39,4 +39,6 @@
     <string name="price_edit_updated_at_label">更新日時:</string>
     <string name="price_edit_save">価格の保存</string>
     <string name="price_edit_amount_label">量:</string>
+    <string name="price_edit_item_label">商品:</string>
+    <string name="price_edit_store_label">お店:</string>
 </resources>

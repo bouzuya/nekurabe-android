@@ -8,9 +8,9 @@ import org.threeten.bp.OffsetDateTime
 import org.threeten.bp.format.DateTimeFormatter
 
 class PriceEditViewModel(
-    private val itemRepository: ItemRepository,
+    itemRepository: ItemRepository,
     private val priceRepository: PriceRepository,
-    private val storeRepository: StoreRepository,
+    storeRepository: StoreRepository,
     private val priceId: Long
 ) : ViewModel() {
     private val _savedEvent = MutableLiveData<Event<Long>>()
@@ -24,14 +24,24 @@ class PriceEditViewModel(
             else DateTimeFormatter.ISO_DATE_TIME.format(it.createdAt)
         }
 
+    private val itemList: LiveData<List<Item>> = itemRepository.findAll()
+
     val itemNameList: LiveData<List<String>> =
-        Transformations.map(itemRepository.findAll()) { list -> list.map { it.name } }
+        Transformations.map(itemList) { list -> list.map { it.name } }
 
     // two-way binding
     val priceText = MutableLiveData<String>()
 
+    // two-way binding
+    val selectedItemPosition = MutableLiveData<Int>()
+
+    // two-way binding
+    val selectedStorePosition = MutableLiveData<Int>()
+
+    private val storeList: LiveData<List<Store>> = storeRepository.findAll()
+
     val storeNameList: LiveData<List<String>> =
-        Transformations.map(storeRepository.findAll()) { list -> list.map { it.name } }
+        Transformations.map(storeList) { list -> list.map { it.name } }
 
     // two-way binding
     val amountText = MutableLiveData<String>()
@@ -59,36 +69,35 @@ class PriceEditViewModel(
         val savedId =
             priceText.value?.toIntOrNull()?.let { priceValue ->
                 amountText.value?.toIntOrNull()?.let { amount ->
-                    // FIXME: select item
-                    itemRepository.findById(1L)?.let { item ->
-                        // FIXME: select store
-                        storeRepository.findById(1L)?.let { store ->
-                            if (priceId == 0L) {
-                                val created = Price(
-                                    id = 0L,
-                                    itemId = item.id,
-                                    storeId = store.id,
-                                    price = priceValue,
-                                    amount = amount,
-                                    createdAt = now,
-                                    updatedAt = now
-                                )
-                                priceRepository.insert(created)
-                            } else {
-                                // update
-                                priceRepository.findById(priceId)?.let { price ->
-                                    val updated = price.copy(
-                                        itemId = price.id,
+                    selectedItemPosition.value?.let { itemList.value?.getOrNull(it) }?.let { item ->
+                        selectedStorePosition.value?.let { storeList.value?.getOrNull(it) }
+                            ?.let { store ->
+                                if (priceId == 0L) {
+                                    val created = Price(
+                                        id = 0L,
+                                        itemId = item.id,
                                         storeId = store.id,
                                         price = priceValue,
                                         amount = amount,
+                                        createdAt = now,
                                         updatedAt = now
                                     )
-                                    priceRepository.update(updated)
-                                    price.id
+                                    priceRepository.insert(created)
+                                } else {
+                                    // update
+                                    priceRepository.findById(priceId)?.let { price ->
+                                        val updated = price.copy(
+                                            itemId = price.id,
+                                            storeId = store.id,
+                                            price = priceValue,
+                                            amount = amount,
+                                            updatedAt = now
+                                        )
+                                        priceRepository.update(updated)
+                                        price.id
+                                    }
                                 }
                             }
-                        }
                     }
                 }
             }
