@@ -59,6 +59,9 @@ class PriceEditViewModel(
     // two-way binding
     val amountText = MutableLiveData<String>()
 
+    // two-way binding
+    val includingTax = MutableLiveData<Boolean>(false)
+
     val updatedAt: LiveData<String> = _price.map {
         if (priceId == 0L) ""
         else DateTimeFormatter.ISO_DATE_TIME.format(it.updatedAt)
@@ -97,6 +100,8 @@ class PriceEditViewModel(
         val now = OffsetDateTime.now()
         val savedId =
             priceText.value?.toIntOrNull()?.let { priceValue ->
+                includingTax.value?.let { it -> priceValue * 100 / (100 + (if (it) 10 else 0)) }
+            }?.let { priceValue ->
                 amountText.value?.toIntOrNull()?.let { amount ->
                     selectedItemPosition.value?.let { itemList.value?.getOrNull(it) }
                         ?.let { item ->
