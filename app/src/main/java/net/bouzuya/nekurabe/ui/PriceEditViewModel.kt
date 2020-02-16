@@ -8,6 +8,7 @@ import org.threeten.bp.OffsetDateTime
 import org.threeten.bp.format.DateTimeFormatter
 
 class PriceEditViewModel(
+    private val historyRepository: HistoryRepository,
     itemRepository: ItemRepository,
     private val priceRepository: PriceRepository,
     storeRepository: StoreRepository,
@@ -36,39 +37,24 @@ class PriceEditViewModel(
 
     // two-way binding
     val selectedItemPosition: MutableLiveData<Int> = MediatorLiveData<Int>().also { data ->
-        data.addSource(itemList) { listOrNull ->
-            listOrNull?.let { list ->
-                _price.value?.itemId?.let { itemId ->
-                    list.indexOfFirst { it.id == itemId }
-                }
-            }?.let { data.value = it }
+        fun updatePosition(listOrNull: List<Item>?, itemIdOrNull: Long?) {
+            listOrNull?.let { l -> itemIdOrNull?.let { i -> l.indexOfFirst { it.id == i } } }
+                ?.let { data.value = it }
         }
-        data.addSource(_price) { priceOrNull ->
-            itemList.value?.let { list ->
-                priceOrNull?.itemId?.let { itemId ->
-                    list.indexOfFirst { it.id == itemId }
-                }
-            }?.let { data.value = it }
-        }
+        data.addSource(itemList) { l -> updatePosition(l, _price.value?.itemId) }
+        data.addSource(_price) { p -> updatePosition(itemList.value, p?.itemId) }
     }
 
     // two-way binding
-    val selectedStorePosition: MutableLiveData<Int> = MediatorLiveData<Int>().also { data ->
-        data.addSource(storeList) { listOrNull ->
-            listOrNull?.let { list ->
-                _price.value?.storeId?.let { storeId ->
-                    list.indexOfFirst { it.id == storeId }
-                }
-            }?.let { data.value = it }
+    val selectedStorePosition: MutableLiveData<Int> =
+        MediatorLiveData<Int>().also { data ->
+            fun updatePosition(listOrNull: List<Store>?, storeIdOrNull: Long?) {
+                listOrNull?.let { l -> storeIdOrNull?.let { i -> l.indexOfFirst { it.id == i } } }
+                    ?.let { data.value = it }
+            }
+            data.addSource(storeList) { l -> updatePosition(l, _price.value?.storeId) }
+            data.addSource(_price) { p -> updatePosition(storeList.value, p?.storeId) }
         }
-        data.addSource(_price) { priceOrNull ->
-            storeList.value?.let { list ->
-                priceOrNull?.storeId?.let { storeId ->
-                    list.indexOfFirst { it.id == storeId }
-                }
-            }?.let { data.value = it }
-        }
-    }
 
     val storeNameList: LiveData<List<String>> =
         Transformations.map(storeList) { list -> list.map { it.name } }
@@ -82,11 +68,28 @@ class PriceEditViewModel(
             else DateTimeFormatter.ISO_DATE_TIME.format(it.updatedAt)
         }
 
+    private fun <T> LiveData<T>.observeOnce(fn: (t: T) -> Unit) {
+        observeForever(object : Observer<T> {
+            override fun onChanged(t: T) {
+                removeObserver(this)
+                fn(t)
+            }
+        })
+    }
+
     init {
         viewModelScope.launch {
-            if (priceId != 0L) {
+            if (priceId == 0L) {
+                selectedStorePosition.observeOnce {
+                    historyRepository.getLatestStoreId()?.let { latestStoreId ->
+                        storeList.value?.indexOfFirst { it.id == latestStoreId }
+                    }?.let { selectedStorePosition.value = it }
+                }
+            } else {
                 priceRepository.findById(priceId)?.let { price ->
                     _price.value = price
+                    // selectedItemPosition
+                    // selectedStorePosition
                     priceText.value = price.price.toString()
                     amountText.value = price.amount.toString()
                 }
@@ -113,6 +116,7 @@ class PriceEditViewModel(
                                             createdAt = now,
                                             updatedAt = now
                                         )
+                                        historyRepository.setLatestStoreId(store.id)
                                         priceRepository.insert(created)
                                     } else {
                                         // update
