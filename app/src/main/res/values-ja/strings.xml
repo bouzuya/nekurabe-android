@@ -49,4 +49,5 @@
     <string name="price_detail_price_label">価格:</string>
     <string name="price_detail_store_label">お店:</string>
     <string name="price_detail_updated_at_label">更新日時:</string>
+    <string name="price_edit_destroy_label">価格の削除</string>
 </resources>

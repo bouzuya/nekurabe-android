@@ -24,6 +24,10 @@ class PriceDetailFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
+
+        viewModel.deleteCompleteEvent.observe(viewLifecycleOwner, EventObserver {
+            findNavController().navigateUp()
+        })
         viewModel.editEvent.observe(viewLifecycleOwner, EventObserver { priceId ->
             findNavController().navigate(actionPriceDetailFragmentToPriceEditFragment(priceId))
         })
