@@ -19,18 +19,16 @@ class PriceEditViewModel(
 
     private val _price = MutableLiveData<Price>()
 
-    val createdAt: LiveData<String> =
-        Transformations.map(_price) {
-            if (priceId == 0L) ""
-            else DateTimeFormatter.ISO_DATE_TIME.format(it.createdAt)
-        }
+    val createdAt: LiveData<String> = _price.map {
+        if (priceId == 0L) ""
+        else DateTimeFormatter.ISO_DATE_TIME.format(it.createdAt)
+    }
 
     private val itemList: LiveData<List<Item>> = itemRepository.findAll()
 
     private val storeList: LiveData<List<Store>> = storeRepository.findAll()
 
-    val itemNameList: LiveData<List<String>> =
-        Transformations.map(itemList) { list -> list.map { it.name } }
+    val itemNameList: LiveData<List<String>> = itemList.map { list -> list.map { it.name } }
 
     // two-way binding
     val priceText = MutableLiveData<String>()
@@ -56,17 +54,15 @@ class PriceEditViewModel(
             data.addSource(_price) { p -> updatePosition(storeList.value, p?.storeId) }
         }
 
-    val storeNameList: LiveData<List<String>> =
-        Transformations.map(storeList) { list -> list.map { it.name } }
+    val storeNameList: LiveData<List<String>> = storeList.map { list -> list.map { it.name } }
 
     // two-way binding
     val amountText = MutableLiveData<String>()
 
-    val updatedAt: LiveData<String> =
-        Transformations.map(_price) {
-            if (priceId == 0L) ""
-            else DateTimeFormatter.ISO_DATE_TIME.format(it.updatedAt)
-        }
+    val updatedAt: LiveData<String> = _price.map {
+        if (priceId == 0L) ""
+        else DateTimeFormatter.ISO_DATE_TIME.format(it.updatedAt)
+    }
 
     private fun <T> LiveData<T>.observeOnce(fn: (t: T) -> Unit) {
         observeForever(object : Observer<T> {

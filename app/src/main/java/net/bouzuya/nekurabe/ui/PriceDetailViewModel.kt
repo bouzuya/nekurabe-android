@@ -19,23 +19,21 @@ class PriceDetailViewModel(
 
     private val _price = MutableLiveData<PriceAndItemAndStore>()
 
-    val createdAt: LiveData<String> =
-        Transformations.map(_price) {
-            DateTimeFormatter.ISO_DATE_TIME.format(it.price.createdAt)
-        }
+    val createdAt: LiveData<String> = _price.map {
+        DateTimeFormatter.ISO_DATE_TIME.format(it.price.createdAt)
+    }
 
-    val itemName: LiveData<String> = Transformations.map(_price) { it.item.name }
+    val itemName: LiveData<String> = _price.map { it.item.name }
 
-    val priceText: LiveData<String> = Transformations.map(_price) { it.price.price.toString() }
+    val priceText: LiveData<String> = _price.map { it.price.price.toString() }
 
-    val storeName: LiveData<String> = Transformations.map(_price) { it.store.name }
+    val storeName: LiveData<String> = _price.map { it.store.name }
 
-    val amountText: LiveData<String> = Transformations.map(_price) { it.price.amount.toString() }
+    val amountText: LiveData<String> = _price.map { it.price.amount.toString() }
 
-    val updatedAt: LiveData<String> =
-        Transformations.map(_price) {
-            DateTimeFormatter.ISO_DATE_TIME.format(it.price.updatedAt)
-        }
+    val updatedAt: LiveData<String> = _price.map {
+        DateTimeFormatter.ISO_DATE_TIME.format(it.price.updatedAt)
+    }
 
     init {
         viewModelScope.launch {

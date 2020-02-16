@@ -20,12 +20,12 @@ class ItemDetailViewModel(
     private val _item = MutableLiveData<Item>()
 
     val createdAt: LiveData<String> =
-        Transformations.map(_item) { DateTimeFormatter.ISO_DATE_TIME.format(it.createdAt) }
+        _item.map { DateTimeFormatter.ISO_DATE_TIME.format(it.createdAt) }
 
-    val name: LiveData<String> = Transformations.map(_item) { it.name }
+    val name: LiveData<String> = _item.map { it.name }
 
     val updatedAt: LiveData<String> =
-        Transformations.map(_item) { DateTimeFormatter.ISO_DATE_TIME.format(it.updatedAt) }
+        _item.map { DateTimeFormatter.ISO_DATE_TIME.format(it.updatedAt) }
 
     init {
         viewModelScope.launch {

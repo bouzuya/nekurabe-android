@@ -19,20 +19,18 @@ class StoreEditViewModel(
 
     private val _store = MutableLiveData<Store>()
 
-    val createdAt: LiveData<String> =
-        Transformations.map(_store) {
-            if (storeId == 0L) ""
-            else DateTimeFormatter.ISO_DATE_TIME.format(it.createdAt)
-        }
+    val createdAt: LiveData<String> = _store.map {
+        if (storeId == 0L) ""
+        else DateTimeFormatter.ISO_DATE_TIME.format(it.createdAt)
+    }
 
     // two-way binding
     val nameText = MutableLiveData<String>()
 
-    val updatedAt: LiveData<String> =
-        Transformations.map(_store) {
-            if (storeId == 0L) ""
-            else DateTimeFormatter.ISO_DATE_TIME.format(it.updatedAt)
-        }
+    val updatedAt: LiveData<String> = _store.map {
+        if (storeId == 0L) ""
+        else DateTimeFormatter.ISO_DATE_TIME.format(it.updatedAt)
+    }
 
     init {
         viewModelScope.launch {
