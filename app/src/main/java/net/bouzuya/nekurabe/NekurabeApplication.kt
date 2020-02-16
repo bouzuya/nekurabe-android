@@ -46,6 +46,7 @@ class NekurabeApplication : Application() {
                 single { get<NekurabeDatabase>().storeDao() }
 
                 // repository
+                single { HistoryRepository(applicationContext) }
                 single { ItemRepository(get()) }
                 single { PriceAndItemAndStoreRepository(get(), get()) }
                 single { PriceRepository(get()) }
