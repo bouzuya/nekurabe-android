@@ -63,5 +63,17 @@
             app:layout_constraintStart_toEndOf="@id/price_list_item_price"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="amount" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:gravity="center_vertical|start"
+            android:text="@{item.unitPrice}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="unitPrice" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

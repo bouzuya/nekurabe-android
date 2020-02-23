@@ -17,4 +17,7 @@ data class PriceAndItemAndStore(
         entityColumn = "id"
     )
     val store: Store
-)
+) {
+    val unitPrice
+        get(): String = String.format("%.2f", price.price.toFloat() / price.amount.toFloat())
+}
