@@ -1,12 +1,11 @@
 package net.bouzuya.nekurabe.ui
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import net.bouzuya.nekurabe.R
 import net.bouzuya.nekurabe.data.EventObserver
 import net.bouzuya.nekurabe.databinding.PriceDetailFragmentBinding
 import net.bouzuya.nekurabe.ui.PriceDetailFragmentDirections.Companion.actionPriceDetailFragmentToPriceEditFragment
@@ -31,5 +30,19 @@ class PriceDetailFragment : Fragment() {
         viewModel.editEvent.observe(viewLifecycleOwner, EventObserver { priceId ->
             findNavController().navigate(actionPriceDetailFragmentToPriceEditFragment(priceId))
         })
+
+        setHasOptionsMenu(true) // onCreateOptionsMenu
     }.root
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.price_detail, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return if (item.itemId == R.id.price_detail_destroy) {
+            viewModel.destroy()
+            true
+        } else super.onOptionsItemSelected(item)
+    }
 }
