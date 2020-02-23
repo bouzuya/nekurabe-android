@@ -54,7 +54,10 @@
             android:layout_height="wrap_content"
             android:inputType="number"
             android:text="@={viewModel.priceText}"
-            tools:ignore="Autofill" />
+            tools:ignore="Autofill">
+
+            <requestFocus />
+        </EditText>
 
         <TextView
             android:layout_width="match_parent"
@@ -74,6 +77,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/price_edit_including_tax_label" />
+
         <CheckBox
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
