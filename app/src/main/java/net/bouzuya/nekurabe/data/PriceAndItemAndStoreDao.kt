@@ -8,7 +8,7 @@ import androidx.room.Transaction
 @Dao
 interface PriceAndItemAndStoreDao {
     @Transaction
-    @Query("SELECT * FROM prices")
+    @Query("SELECT * FROM prices ORDER BY id DESC")
     fun findAll(): LiveData<List<PriceAndItemAndStore>>
 
     @Transaction
