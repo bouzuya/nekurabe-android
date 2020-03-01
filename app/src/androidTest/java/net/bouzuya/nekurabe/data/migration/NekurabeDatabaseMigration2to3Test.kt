@@ -28,7 +28,7 @@ class NekurabeDatabaseMigration2to3Test {
 
         migrationTestHelper.createDatabase(databaseName, 2).also { database ->
             testStoresTable(database)
-            testItemsTable(database)
+            testItemsTableV1(database)
         }
 
         migrationTestHelper.runMigrationsAndValidate(

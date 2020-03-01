@@ -8,6 +8,7 @@ import net.bouzuya.nekurabe.data.Item
 import net.bouzuya.nekurabe.data.ItemRepository
 import org.threeten.bp.OffsetDateTime
 import org.threeten.bp.format.DateTimeFormatter
+import java.util.*
 
 class ItemEditViewModel(
     private val itemRepository: ItemRepository,
@@ -47,7 +48,7 @@ class ItemEditViewModel(
         val now = OffsetDateTime.now()
         val savedId = nameText.value?.let { name ->
             if (itemId == 0L) {
-                val created = Item(0L, name, now, now)
+                val created = Item(0L, name, now, now, UUID.randomUUID())
                 itemRepository.insert(created)
             } else {
                 // update

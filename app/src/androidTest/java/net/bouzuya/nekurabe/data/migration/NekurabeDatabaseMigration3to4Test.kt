@@ -8,7 +8,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
-class NekurabeDatabaseMigration1to2Test {
+class NekurabeDatabaseMigration3to4Test {
 
     @get:Rule
     val migrationTestHelper = MigrationTestHelper(
@@ -23,20 +23,22 @@ class NekurabeDatabaseMigration1to2Test {
     }
 
     @Test
-    fun migrate1to2() {
+    fun migrate3to4() {
         val databaseName = "test-database"
 
-        migrationTestHelper.createDatabase(databaseName, 1).also { database ->
+        migrationTestHelper.createDatabase(databaseName, 3).also { database ->
             testStoresTable(database)
+            testItemsTableV1(database)
+            testPricesTable(database)
         }
 
         migrationTestHelper.runMigrationsAndValidate(
             databaseName,
-            2,
+            4,
             true,
-            NekurabeDatabaseMigration1to2()
+            NekurabeDatabaseMigration3to4()
         ).also { database ->
-            testItemsTableV1(database)
+            testItemsTableV4(database)
         }
     }
 }

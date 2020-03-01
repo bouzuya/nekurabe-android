@@ -3,7 +3,8 @@ package net.bouzuya.nekurabe.data
 import androidx.room.testing.MigrationTestHelper
 import androidx.test.platform.app.InstrumentationRegistry
 import com.jakewharton.threetenabp.AndroidThreeTen
-import net.bouzuya.nekurabe.data.migration.testItemsTable
+import net.bouzuya.nekurabe.data.migration.testItemsTableV1
+import net.bouzuya.nekurabe.data.migration.testItemsTableV4
 import net.bouzuya.nekurabe.data.migration.testPricesTable
 import net.bouzuya.nekurabe.data.migration.testStoresTable
 import org.junit.Before
@@ -33,7 +34,7 @@ class NekurabeDatabaseTest {
     @Test
     fun createDatabaseVersion2() {
         migrationTestHelper.createDatabase("test-database", 2).also { database ->
-            testItemsTable(database)
+            testItemsTableV1(database)
             testStoresTable(database)
         }
     }
@@ -41,7 +42,16 @@ class NekurabeDatabaseTest {
     @Test
     fun createDatabaseVersion3() {
         migrationTestHelper.createDatabase("test-database", 3).also { database ->
-            testItemsTable(database)
+            testItemsTableV1(database)
+            testStoresTable(database)
+            testPricesTable(database)
+        }
+    }
+
+    @Test
+    fun createDatabaseVersion4() {
+        migrationTestHelper.createDatabase("test-database", 4).also { database ->
+            testItemsTableV4(database)
             testStoresTable(database)
             testPricesTable(database)
         }

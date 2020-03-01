@@ -7,6 +7,7 @@ import com.jakewharton.threetenabp.AndroidThreeTen
 import net.bouzuya.nekurabe.data.*
 import net.bouzuya.nekurabe.data.migration.NekurabeDatabaseMigration1to2
 import net.bouzuya.nekurabe.data.migration.NekurabeDatabaseMigration2to3
+import net.bouzuya.nekurabe.data.migration.NekurabeDatabaseMigration3to4
 import net.bouzuya.nekurabe.ui.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
@@ -36,6 +37,7 @@ class NekurabeApplication : Application() {
                     )
                         .addMigrations(NekurabeDatabaseMigration1to2())
                         .addMigrations(NekurabeDatabaseMigration2to3())
+                        .addMigrations(NekurabeDatabaseMigration3to4())
                         .build()
                 }
 
