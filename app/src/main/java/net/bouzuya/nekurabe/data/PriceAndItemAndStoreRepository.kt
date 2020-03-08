@@ -15,5 +15,7 @@ class PriceAndItemAndStoreRepository(
 
     suspend fun insert(price: PriceAndItemAndStore): Long = priceDao.insert(price.price)
 
+    suspend fun minUnitPriceByItem(item: Item): Double? = priceDao.minUnitPriceByItemId(item.id)
+
     suspend fun update(price: PriceAndItemAndStore): Unit = priceDao.update(price.price)
 }

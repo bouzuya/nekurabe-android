@@ -18,6 +18,9 @@ data class PriceAndItemAndStore(
     )
     val store: Store
 ) {
+    val unitPriceAsDouble
+        get(): Double = price.price.toDouble() / price.amount.toDouble()
+
     val unitPrice
-        get(): String = String.format("%.2f", price.price.toFloat() / price.amount.toFloat())
+        get(): String = String.format("%.2f", unitPriceAsDouble)
 }

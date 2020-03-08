@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:onClickPrice="@{viewModel::show}"
-            app:priceList="@{viewModel.priceList}"
+            app:priceList="@{viewModel.priceListWithMinDiff}"
             tools:itemCount="3"
             tools:listitem="@layout/price_list_item" />
 

@@ -17,6 +17,9 @@ interface PriceDao {
     @Insert
     suspend fun insert(price: Price): Long
 
+    @Query("SELECT MIN(price / amount) FROM prices WHERE itemId = :itemId LIMIT 1")
+    suspend fun minUnitPriceByItemId(itemId: Long): Double?
+
     @Update
     suspend fun update(price: Price)
 }

@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.BindingAdapter
+import androidx.fragment.app.findFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import net.bouzuya.nekurabe.data.Item
@@ -71,15 +72,15 @@ interface OnClickPriceListener {
     "onClickPrice"
 )
 fun RecyclerView.setPriceList(
-    priceList: List<PriceAndItemAndStore>?,
+    priceList: List<Pair<PriceAndItemAndStore, String>>?,
     onClickPrice: OnClickPriceListener?
 ) {
     class BindingViewHolder(val binding: PriceListItemBinding) :
         RecyclerView.ViewHolder(binding.root)
 
     class StoreListAdapter : RecyclerView.Adapter<BindingViewHolder>() {
-        private var _dataSet: List<PriceAndItemAndStore> = emptyList()
-        var dataSet: List<PriceAndItemAndStore>
+        private var _dataSet: List<Pair<PriceAndItemAndStore, String>> = emptyList()
+        var dataSet: List<Pair<PriceAndItemAndStore, String>>
             get() = _dataSet
             set(values) {
                 _dataSet = values
@@ -99,8 +100,10 @@ fun RecyclerView.setPriceList(
 
         override fun onBindViewHolder(holder: BindingViewHolder, position: Int) {
             val item = dataSet[position]
-            holder.binding.item = item
-            holder.binding.onClick = View.OnClickListener { onClickPrice?.onClick(item) }
+            holder.binding.lifecycleOwner = this@setPriceList.findFragment()
+            holder.binding.item = item.first
+            holder.binding.minPriceDiff = item.second
+            holder.binding.onClick = View.OnClickListener { onClickPrice?.onClick(item.first) }
         }
     }
 

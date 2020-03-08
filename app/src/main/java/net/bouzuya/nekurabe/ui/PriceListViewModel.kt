@@ -1,18 +1,33 @@
 package net.bouzuya.nekurabe.ui
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
 import net.bouzuya.nekurabe.data.Event
 import net.bouzuya.nekurabe.data.PriceAndItemAndStore
 import net.bouzuya.nekurabe.data.PriceAndItemAndStoreRepository
 
 class PriceListViewModel(
-    priceAndItemAndStoreRepository: PriceAndItemAndStoreRepository
+    private val priceAndItemAndStoreRepository: PriceAndItemAndStoreRepository
 ) : ViewModel() {
     val priceList: LiveData<List<PriceAndItemAndStore>> = priceAndItemAndStoreRepository.findAll()
 
-    private val _newEvent = MutableLiveData<Event<Unit>>()
+    val priceListWithMinDiff: LiveData<List<Pair<PriceAndItemAndStore, String>>> =
+        priceList.switchMap { list ->
+            liveData {
+                emit(list.map {
+                    Pair(
+                        it,
+                        String.format(
+                            "%+.2f",
+                            priceAndItemAndStoreRepository.minUnitPriceByItem(
+                                it.item
+                            )?.let { minUnitPrice -> it.unitPriceAsDouble - minUnitPrice } ?: 0.0
+                        )
+                    )
+                })
+            }
+        }
+
+    val _newEvent = MutableLiveData<Event<Unit>>()
     val newEvent: LiveData<Event<Unit>> = _newEvent
 
     private val _showEvent = MutableLiveData<Event<PriceAndItemAndStore>>()
